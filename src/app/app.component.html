@@ -1,0 +1,16 @@
+<div class="flex-main-container">
+  <app-toolbar class="above" [sidenav]="leftSidenav" [projects]="projects"></app-toolbar>
+  <div id="wrapper">
+    <mat-sidenav-container> 
+  <mat-sidenav #leftSidenav mode="side" opened>
+    <app-sidemenu></app-sidemenu> 
+    </mat-sidenav>
+    <mat-sidenav-content [@onMainContentChange]="onSideNavChange ? 'open': 'close'">
+      <div class="content" >
+           <router-outlet></router-outlet>       
+        </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>  
+  </div>
+</div>
+  
