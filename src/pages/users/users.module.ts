@@ -1,3 +1,6 @@
+import { UsersListComponent } from './users-list/users-list.component';
+import { UsersService } from './../../services/users.service';
+import { HttpClientModule } from '@angular/common/http';
 import { UsersRoutes } from './users.routing';
 import { MaterialModule } from './../../core/modules/material.module';
 import { UsersDialogComponent } from './users-dialog/users-dialog.component';
@@ -11,8 +14,10 @@ import { UsersComponent } from './users.component';
     CommonModule,
     SharedModule,
     MaterialModule,
-    UsersRoutes
+    UsersRoutes,
+    HttpClientModule
   ],
-  declarations: [UsersComponent, UsersDialogComponent]
+  declarations: [UsersComponent, UsersDialogComponent, UsersListComponent],
+  providers: [UsersService]
 })
 export class UsersModule { }

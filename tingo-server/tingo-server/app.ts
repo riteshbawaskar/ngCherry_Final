@@ -3,10 +3,8 @@ import * as express from 'express';
 import * as morgan from 'morgan';
 import * as path from 'path';
 
-// To connect to mongo enable the mongo section and disable the the setTingo section 
-// import setMongo from './mongo';
-import setRoutes from './routes';
 import setTingo from './tingo';
+import setRoutes from './routes';
 
 const app = express();
 dotenv.config();
@@ -20,15 +18,19 @@ if (process.env.NODE_ENV !== 'test') {
 
 async function main(): Promise<any> {
   try {
-   // await setMongo();
-    await setTingo();
-
+    if (process.env.DATABASE == 'MONGODB')
+    {
+      // await setMongo();
+    }
+    else{
+     await setTingo();
+    }
     setRoutes(app);
     app.get('/*', (req, res) => {
       res.sendFile(path.join(__dirname, '../public/index.html'));
     });
     if (!module.parent) {
-      app.listen(app.get('port'), () => console.log(`Cherry Server listening on port ${app.get('port')}`));
+      app.listen(app.get('port'), () => console.log(`Tingo Server listening on port ${app.get('port')}`));
     }
   } catch (err) {
     console.error(err);

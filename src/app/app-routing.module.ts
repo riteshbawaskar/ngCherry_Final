@@ -6,10 +6,13 @@ import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 
 const usersModule = () =>
   import('../pages/users/users.module').then((x) => x.UsersModule);
-
+const designModule = () =>
+  import('../pages/design/design.module').then((x) => x.DesignModule);
 
 const routes: Routes = [{ path: '', component: DashboardComponent},
-                        { path: 'users', loadChildren: usersModule}
+                        { path: 'users', loadChildren: usersModule},
+                        { path: 'design', loadChildren: designModule},
+                        {path: 'dashboard', component: DashboardComponent}
                       ];
 
 @NgModule({

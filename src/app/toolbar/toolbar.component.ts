@@ -12,6 +12,7 @@ import {NavigationEnd, NavigationStart, Router} from '@angular/router';
 })
 export class ToolbarComponent implements OnInit {
 @Input() sidenav: MatSidenav;
+@Input() rightsidemenu: MatSidenav;
 @Input() projects: Project[] = [{
   id: '1',
   name: 'G20-Rates',

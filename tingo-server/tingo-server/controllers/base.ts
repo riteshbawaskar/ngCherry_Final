@@ -5,9 +5,12 @@ abstract class BaseCtrl {
   // Get all
   getAll = async (req, res) => {
     try {
-      const docs = await this.model.find({});
+      console.log('getting data');
+      const docs = await this.model.find({}).exec();
+      console.log('getall =' + docs);
       res.status(200).json(docs);
     } catch (err) {
+      console.log(err.message);
       return res.status(400).json({ error: err.message });
     }
   }
@@ -15,7 +18,7 @@ abstract class BaseCtrl {
   // Count all
   count = async (req, res) => {
     try {
-      const count = await this.model.count();
+      const count = await this.model.count().exec();
       res.status(200).json(count);
     } catch (err) {
       return res.status(400).json({ error: err.message });
@@ -35,9 +38,10 @@ abstract class BaseCtrl {
   // Get by id
   get = async (req, res) => {
     try {
-      const obj = await this.model.findOne({ _id: req.params.id });
+      const obj = await this.model.findOne({ _id: req.params.id }).exec();
       res.status(200).json(obj);
     } catch (err) {
+      console.log('error on get ' + err.message);
       return res.status(500).json({ error: err.message });
     }
   }
@@ -45,7 +49,7 @@ abstract class BaseCtrl {
   // Update by id
   update = async (req, res) => {
     try {
-      await this.model.findOneAndUpdate({ _id: req.params.id }, req.body);
+      await this.model.findOneAndUpdate({ _id: req.params.id }, req.body).exec();
       res.sendStatus(200);
     } catch (err) {
       return res.status(400).json({ error: err.message });
@@ -55,7 +59,7 @@ abstract class BaseCtrl {
   // Delete by id
   delete = async (req, res) => {
     try {
-      await this.model.findOneAndRemove({ _id: req.params.id });
+      await this.model.findOneAndRemove({ _id: req.params.id }).exec();
       res.sendStatus(200);
     } catch (err) {
       return res.status(400).json({ error: err.message });

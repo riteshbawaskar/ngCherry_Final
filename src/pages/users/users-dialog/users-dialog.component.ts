@@ -23,20 +23,20 @@ export class UsersDialogComponent implements OnInit {
   dialogTitle: string;
 
   constructor( public matDialogRef: MatDialogRef<UsersDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) private _data: any,
-    private _formBuilder: FormBuilder) { 
+               @Inject(MAT_DIALOG_DATA) private _data: any,
+               private _formBuilder: FormBuilder) {
 
       // Set the defaults
       this.action = _data.action;
 
       if ( this.action === 'edit' )
       {
-          this.dialogTitle = 'Edit Contact';
+          this.dialogTitle = 'Edit User';
           this.user = _data.contact;
       }
       else
       {
-          this.dialogTitle = 'New Contact';
+          this.dialogTitle = 'New User';
           this.user = new User();
       }
 
@@ -56,7 +56,7 @@ export class UsersDialogComponent implements OnInit {
             lastName: [this.user.lastName],
             userId: [this.user.userId],
             password : [this.user.password],
-            email   : [this.user.emailaddress]
+            email   : [this.user.email]
         });
     }
 

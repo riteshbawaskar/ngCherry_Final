@@ -1,3 +1,5 @@
+
+import { UsersService } from './../../services/users.service';
 import { fuseAnimations } from './../../theme/animation';
 import { UsersDialogComponent } from './users-dialog/users-dialog.component';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
@@ -19,7 +21,7 @@ export class UsersComponent implements OnInit {
   hasSelectedContacts: boolean;
   searchInput: FormControl;
 
-  constructor(private _matDialog: MatDialog) { }
+  constructor(private _matDialog: MatDialog, private userService: UsersService) { }
 
   ngOnInit() {
   }
@@ -37,8 +39,8 @@ export class UsersComponent implements OnInit {
                 {
                     return;
                 }
-
-              //  this._contactsService.updateContact(response.getRawValue());
+                console.log(response.getRawValue);
+                this.userService.addUser(response.getRawValue());
             });
     }
 }

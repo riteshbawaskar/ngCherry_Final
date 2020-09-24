@@ -1,0 +1,175 @@
+<div>
+    <p>In design</p>
+  <!-- CHATS TOOLBAR -->
+  <mat-toolbar>
+
+      <!-- TOOLBAR TOP -->
+      <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+
+          <!-- USER AVATAR WRAPPER -->
+          <div class="avatar-wrapper">
+              In Test Suite component
+              <!-- USER AVATAR -->
+          
+              <!-- / USER AVATAR -->
+
+              <mat-icon class="s-16 status" 
+                        [matMenuTriggerFor]="userStatusMenu"></mat-icon>
+
+              <!-- USER STATUS -->
+              <mat-menu id="user-status-menu" #userStatusMenu="matMenu">
+
+                  <button mat-menu-item >
+                      <div fxLayout="row" fxLayoutAlign="start center">
+                          <mat-icon class="s-16 status online"></mat-icon>
+                          <span>Online</span>
+                      </div>
+                  </button>
+
+                  <button mat-menu-item >
+                      <div fxLayout="row" fxLayoutAlign="start center">
+                          <mat-icon class="s-16 status away"></mat-icon>
+                          <span>Away</span>
+                      </div>
+                  </button>
+
+                  <button mat-menu-item >
+                      <div fxLayout="row" fxLayoutAlign="start center">
+                          <mat-icon class="s-16 status do-not-disturb"></mat-icon>
+                          <span>Do not disturb</span>
+                      </div>
+                  </button>
+
+                  <button mat-menu-item >
+                      <div fxLayout="row" fxLayoutAlign="start center">
+                          <mat-icon class="s-16 status offline"></mat-icon>
+                          <span>Offline</span>
+                      </div>
+                  </button>
+              </mat-menu>
+              <!-- / USER STATUS -->
+
+          </div>
+          <!-- / USER AVATAR -->
+
+          <div>
+              <button mat-icon-button
+                      [matMenuTriggerFor]="userMenu"
+                      aria-label="more">
+                  <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #userMenu="matMenu">
+                  <button mat-menu-item >
+                      Profile
+                  </button>
+                  <button mat-menu-item >
+                      Logout
+                  </button>
+              </mat-menu>
+          </div>
+
+      </mat-toolbar-row>
+      <!-- / TOOLBAR TOP -->
+
+      <!-- TOOLBAR BOTTOM -->
+      <mat-toolbar-row>
+
+          <!-- SEARCH -->
+          <div class="search-wrapper" fxFlex fxLayout="row" fxLayoutAlign="start center">
+
+              <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
+                  <mat-icon class="s-16 secondary-text">search</mat-icon>
+                  <input  type="text" placeholder="Search or start new chat" fxFlex>
+              </div>
+
+          </div>
+          <!-- / SEARCH -->
+
+      </mat-toolbar-row>
+      <!-- / TOOLBAR BOTTOM -->
+
+  </mat-toolbar>
+  <!-- / CHATS TOOLBAR -->
+
+</div>
+<!-- / SIDENAV HEADER -->
+
+<!-- SIDENAV CONTENT -->
+<div class="sidenav-content" fusePerfectScrollbar fxFlex>
+
+  <!-- CHATS CONTENT -->
+  <div  [@animateStagger]="{value:'50'}">
+
+      <!-- CHATS LIST-->
+      <div class="chat-list" fxLayout="column">
+
+          <div matSubheader>
+              Chats
+          </div>
+
+          <button mat-button class="contact"
+                  [@animate]="{value:'*',params:{y:'100%'}}">
+
+              <div fxLayout="row" fxLayoutAlign="start center">
+
+               
+                  <div fxLayout="row" fxFlex>
+
+                      <div class="pr-4" fxFlex fxLayout="column" fxLayoutAlign="center start">
+                          <div class="contact-name">Suite1</div>
+                          <div class="contact-last-message">this is suite1</div>
+                      </div>
+
+                      <div fxLayout="column" fxLayoutAlign="start end">
+                          <div class="contact-last-message-time">
+                             date
+                          </div>
+                          <div class="mt-4 unread-message-count accent">unread message</div>
+                      </div>
+
+                  </div>
+
+              </div>
+
+          </button>
+
+      </div>
+      <!-- / CHATS LIST-->
+
+      <!-- CONTACTS LIST-->
+      <div class="contact-list" fxLayout="column">
+
+          <div matSubheader>
+              Contacts
+          </div>
+
+          <button mat-button class="contact"
+                  
+                  [@animate]="{value:'*',params:{y:'100%'}}">
+
+              <div fxLayout="row" fxLayoutAlign="start center">
+
+                
+                  <div fxLayout="column" fxLayoutAlign="start start">
+                      <div class="contact-name">RFX</div>
+                      <p class="contact-mood">rfx test suite</p>
+                  </div>
+
+              </div>
+
+          </button>
+
+      </div>
+      <!-- / CONTACTS LIST-->
+
+      <!-- NO RESULTS MESSAGE -->
+      <div class="no-results-message">
+          No results..
+      </div>
+      <!-- NO RESULTS MESSAGE-->
+
+  </div>
+  <!-- / CHATS CONTENT -->
+
+</div>
+<!-- / SIDENAV CONTENT -->

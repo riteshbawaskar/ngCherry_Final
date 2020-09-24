@@ -1,7 +1,7 @@
 <div class="flex-main-container">
-  <app-toolbar class="above" [sidenav]="leftSidenav" [projects]="projects"></app-toolbar>
+  <app-toolbar class="above" [sidenav]="leftSidenav" [rightsidemenu]="rightsidemenu" [projects]="projects"></app-toolbar>
   <div id="wrapper">
-    <mat-sidenav-container> 
+  <mat-sidenav-container> 
   <mat-sidenav #leftSidenav mode="side" opened>
     <app-sidemenu></app-sidemenu> 
     </mat-sidenav>
@@ -10,6 +10,10 @@
            <router-outlet></router-outlet>       
         </div>
     </mat-sidenav-content>
+    
+    <mat-sidenav #rightsidemenu position="end" mode="over">
+      <app-rightmenu></app-rightmenu>
+  </mat-sidenav>
   </mat-sidenav-container>  
   </div>
 </div>

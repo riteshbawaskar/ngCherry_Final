@@ -1,0 +1,30 @@
+<div id="design" class="page-layout carded fullwidth inner-scroll">
+
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg accent"></div>
+  <!-- / TOP BACKGROUND -->
+
+  <!-- CENTER -->
+  <div class="center">
+
+    <!-- CONTENT CARD -->
+    <div class="content-card">
+      <app-design-test-suite (SelectedSuite)='onSelectedSuite($event)'></app-design-test-suite> 
+      <mat-sidenav-container>
+        <mat-sidenav #suitepanel mode="side" class="mat-elevation-z2" mode="side" opened="true" >
+           
+        </mat-sidenav> 
+         
+          <div  fxLayout="row" style = "height:100%">
+            <div  class="mat-elevation-z4" fxFlex=60>	
+            <!-- <app-design-test-case (SelectedTest) ="onSelectedTest($event)" [suitepanel]="suitepanel" [suite]="selectedSuite" [testcases]="testcases"></app-design-test-case>       -->
+            </div>
+            <div  class="mat-elevation-z4" fxFlex=40 style="height:100%">	
+              <!-- <app-design-test-step [teststeps]="teststeps" [testcase]="selectedTest"></app-design-test-step> -->
+            </div>
+        
+        </div>
+        </mat-sidenav-container>
+    </div>
+  </div>
+</div>

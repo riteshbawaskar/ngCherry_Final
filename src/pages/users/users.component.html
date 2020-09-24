@@ -42,11 +42,11 @@
     <div class="content">
 
         <!-- CENTER -->
-        <div class="center p-24 pb-56 pr-sm-92" flex-perfect-scrollbar>
+        <div class="center " flex-perfect-scrollbar>
 
             <!-- CONTENT -->
             <div class="content">
-                <!-- <contacts-contact-list></contacts-contact-list> -->
+                 <app-users-list></app-users-list> 
             </div>
             <!-- / CONTENT -->
 
@@ -59,8 +59,7 @@
 </div>
 
 <!-- ADD CONTACT BUTTON -->
-<button mat-fab class="accent" id="add-contact-button" (click)="newUser()" aria-label="add contact"
-        [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}">
+<button mat-fab class="accent" id="add-user-button" (click)="newUser()" aria-label="add contact" [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}">
     <mat-icon>person_add</mat-icon>
 </button>
 <!-- / ADD CONTACT BUTTON -->

@@ -9,14 +9,15 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RightmenuComponent } from './rightmenu/rightmenu.component';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     SideMenuComponent,
-    ToolbarComponent
-
-  ],
+    ToolbarComponent,
+      RightmenuComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
