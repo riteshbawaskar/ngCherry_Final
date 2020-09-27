@@ -1,3 +1,4 @@
+
 import { UsersListComponent } from './users-list/users-list.component';
 import { UsersService } from './../../services/users.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -15,7 +16,7 @@ import { UsersComponent } from './users.component';
     SharedModule,
     MaterialModule,
     UsersRoutes,
-    HttpClientModule
+    HttpClientModule,
   ],
   declarations: [UsersComponent, UsersDialogComponent, UsersListComponent],
   providers: [UsersService]

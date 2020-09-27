@@ -1,4 +1,3 @@
-
 import { DesignTestSuiteComponent } from './design-test-suite/design-test-suite.component';
 import { MaterialModule } from './../../core/modules/material.module';
 import { SharedModule } from './../../core/modules/shared.module';

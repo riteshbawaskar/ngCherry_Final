@@ -1,6 +1,6 @@
 export class Entity{
 
-    id: string;
+    _id: string;
 
 
 }

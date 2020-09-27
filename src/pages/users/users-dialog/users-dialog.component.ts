@@ -1,4 +1,4 @@
-import { DraggableDialogDirective } from './../../../core/directives/DraggableDialog.directive';
+import { DraggableDialogDirective } from '../../../core/directives/draggable-dialog/DraggableDialog.directive';
 import { FlexPerfectScrollbarDirective } from './../../../core/directives/flex-perfect-scrollbar/flex-perfect-scrollbar.directive';
 import { MatIconModule } from '@angular/material/icon';
 import { MaterialModule } from './../../../core/modules/material.module';
@@ -32,7 +32,7 @@ export class UsersDialogComponent implements OnInit {
       if ( this.action === 'edit' )
       {
           this.dialogTitle = 'Edit User';
-          this.user = _data.contact;
+          this.user = _data.user;
       }
       else
       {
@@ -43,15 +43,10 @@ export class UsersDialogComponent implements OnInit {
       this.userForm = this.createUserForm();
     }
 
-    /**
-     * Create contact form
-     *
-     * @returns {FormGroup}
-     */
     createUserForm(): FormGroup
     {
         return this._formBuilder.group({
-            id      : [this.user.id],
+            _id : [this.user._id],
             firstName: [this.user.firstName],
             lastName: [this.user.lastName],
             userId: [this.user.userId],

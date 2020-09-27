@@ -1,64 +1,62 @@
-<mat-table #table [dataSource]="dataSource"
+<mat-table #table [dataSource]="users"
            [@animateStagger]="{value:'50'}">
-    <!-- Checkbox Column -->
+    <!-- Checkbox Column 
     <ng-container matColumnDef="checkbox">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let user">
-            <mat-checkbox [(ngModel)]="checkboxes[0]" (ngModelChange)="onSelectedChange(user.id)"
+            <mat-checkbox [(ngModel)]="checkboxes[0]"
                           (click)="$event.stopPropagation()">
             </mat-checkbox>
         </mat-cell>
-    </ng-container>
-
-    <!-- Avatar Column -->
-  <!--   <ng-container matColumnDef="avatar">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let contact">
-            <img class="avatar" *ngIf="contact.avatar" [alt]="contact.name"
-                 [src]="contact.avatar"/>
-        </mat-cell>
     </ng-container> -->
 
-     <!-- UserId Column -->
-     <ng-container matColumnDef="userId">
-        <mat-header-cell *matHeaderCellDef>User Id</mat-header-cell>
-        <mat-cell *matCellDef="let contact">
-            <p class="text-truncate font-weight-600">{{user.id}}</p>
+  <!--  Avatar Column -->
+    <ng-container matColumnDef="avatar">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let user">
+            <div class="avatar accent" >{{user.firstName[0]}}</div>
+            <mat-icon class="s-16 status"
+            [ngClass]="user.status"></mat-icon>
         </mat-cell>
     </ng-container> 
-    
+
+     <!-- UserId Column -->
+      <ng-container matColumnDef="userId">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>User Id</mat-header-cell>
+        <mat-cell *matCellDef="let user">
+            <p class="text-truncate font-weight-600">{{user.userId}}</p>
+        </mat-cell>
+    </ng-container> 
+     
     <!-- Name Column -->
     <ng-container matColumnDef="firstName">
         <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
-        <mat-cell *matCellDef="let contact">
-            <p class="text-truncate font-weight-600">{{user.firstName}}</p>
+        <mat-cell *matCellDef="let user">
+            <p class="text-truncate ">{{user.firstName}}</p>
         </mat-cell>
     </ng-container>
 
      <!-- Name Column -->
      <ng-container matColumnDef="lastName">
         <mat-header-cell *matHeaderCellDef>Last Name</mat-header-cell>
-        <mat-cell *matCellDef="let contact">
-            <p class="text-truncate font-weight-600">{{user.lastName}}</p>
+        <mat-cell *matCellDef="let user">
+            <p class="text-truncate ">{{user.lastName}}</p>
         </mat-cell>
     </ng-container> 
 
     <!-- Email Column -->
     <ng-container matColumnDef="email">
         <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-sm>Email</mat-header-cell>
-        <mat-cell *matCellDef="let contact" fxHide fxShow.gt-sm>
+        <mat-cell *matCellDef="let user" fxHide fxShow.gt-sm>
             <p class="email text-truncate">
                 {{user.email}}
             </p>
         </mat-cell>
     </ng-container>
-
-    
-
-    <!-- Buttons Column -->
+ <!-- Buttons Column -->
     <ng-container matColumnDef="buttons">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let contact">
+        <mat-cell *matCellDef="let user">
             <div fxFlex="row" fxLayoutAlign="end center">
                 
                 <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="More"
@@ -81,8 +79,8 @@
     <mat-row *matRowDef="let user; columns: displayedColumns;"
              class="user"
              (click)="editUser(user)"
-             [ngClass]="{'accent-50':checkboxes[0]}"
-             matRipple
-             [@animate]="{value:'*',params:{y:'100%'}}">
+              matRipple
+              [@animate]="{value:'*',params:{y:'100%'}}">
+            >
     </mat-row>
 </mat-table>

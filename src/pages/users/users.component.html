@@ -1,4 +1,4 @@
-<div id="users" class="page-layout simple inner-scroll">
+<div id="users" class="page-layout simple left-sidebar inner-sidebar inner-scroll">
 
     <!-- HEADER -->
     <div class="header accent p-16 p-sm-24" fxLayout="column" fxLayoutAlign="start"
@@ -39,27 +39,24 @@
 
 
     <!-- CONTENT -->
-    <div class="content">
-
+     <!-- CONTENT -->
+     <div class="content" FlexPerfectScrollbar  >
         <!-- CENTER -->
-        <div class="center " flex-perfect-scrollbar>
-
+        <div  class="center p-24 pb-56 pr-sm-92" >
             <!-- CONTENT -->
-            <div class="content">
-                 <app-users-list></app-users-list> 
+            <div class="content" >
+                 <app-users-list ></app-users-list> 
             </div>
             <!-- / CONTENT -->
-
         </div>
         <!-- / CENTER -->
-
     </div>
     <!-- / CONTENT-->
-
 </div>
 
-<!-- ADD CONTACT BUTTON -->
-<button mat-fab class="accent" id="add-user-button" (click)="newUser()" aria-label="add contact" [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}">
+<!-- ADD User BUTTON -->
+<button mat-fab class="accent" id="add-user-button" (click)="newUser()" aria-label="add user"
+        [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}">
     <mat-icon>person_add</mat-icon>
 </button>
-<!-- / ADD CONTACT BUTTON -->
+<!-- / ADD User BUTTON -->

@@ -14,7 +14,7 @@ export class ToolbarComponent implements OnInit {
 @Input() sidenav: MatSidenav;
 @Input() rightsidemenu: MatSidenav;
 @Input() projects: Project[] = [{
-  id: '1',
+  _id: '1',
   name: 'G20-Rates',
   description: 'This is rates test project',
   components: [],

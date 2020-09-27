@@ -1,0 +1,65 @@
+<div id="component-lib" class="page-layout simple">
+
+    <!-- HEADER -->
+    <div class="header accent p-16 p-sm-24" fxLayout="row" fxLayoutAlign="center center">
+
+        <div class="hero-text">
+            <mat-icon class="hero-icon">school</mat-icon>
+            <h1 [@animate]="{value:'*',params:{delay:'100ms', y:'25px'}}">
+                WELCOME TO COMPONENT LIBRARY
+            </h1>
+            <h3 [@animate]="{value:'*',params:{delay:'100ms', y:'25px'}}">
+                Create your own Component Library and add it here.
+            </h3>
+        </div>
+
+        <!-- / SEARCH -->
+
+        <!-- SEARCH 
+        <div class="search-wrapper mx-32 mx-md-0">
+            <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon>search</mat-icon>
+                <input #filter placeholder="Search for a product">
+            </div>
+        </div>-->
+
+        <!-- ADD BUTTON -->
+        <div fxLayoutAlign="space-around end" style="align-self: flex-end;">
+            <button mat-raised-button (click)="AddNewComponent()"
+                class="add-component-button fuse-white mt-24 mt-md-0">
+                <span>ADD NEW COMPONENT</span>
+            </button>
+        </div>
+        <!-- / ADD BUTTON -->
+
+
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content p-24">
+
+        <div fxLayout="column" fxLayoutAlign="center">
+
+            <div class="filters" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
+                fxLayoutAlign.gt-xs="space-between center">
+
+            </div>
+
+            <div class="courses" fxLayout="row wrap" fxLayoutAlign="center" [@animateStagger]="{value:'50'}">
+
+
+
+
+                <div class="no-courses">
+                    No component libraries found!
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>

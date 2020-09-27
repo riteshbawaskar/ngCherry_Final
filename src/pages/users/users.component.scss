@@ -1,7 +1,7 @@
 @import "../../theme/fuse";
 
 #users {
-
+    height: calc(100vh - 80px);
     .header {
 
         .logo-text{ margin-left: 10px;}
@@ -35,7 +35,7 @@
 
     .content {
         overflow: hidden;
-
+        
         .sidebar {
 
             &:not(.locked-open) {
@@ -43,4 +43,7 @@
             }
         }
     }
+
+    .p-24{padding: 24px!important; }
+    .pb-56 { padding-bottom: 56px!important;}
 }

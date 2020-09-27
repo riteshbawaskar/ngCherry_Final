@@ -12,11 +12,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RightmenuComponent } from './rightmenu/rightmenu.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     SideMenuComponent,
     ToolbarComponent,
-      RightmenuComponent
+      RightmenuComponent,
    ],
   imports: [
     BrowserModule,

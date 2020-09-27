@@ -1,13 +1,10 @@
 import { User } from './../models/user';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class UsersService  {
 
   constructor(private httpClient: HttpClient) {
@@ -31,19 +28,21 @@ export class UsersService  {
   }
 
   addUser(user: User): Observable<User> {
+    console.log('Adding user:' + user.firstName);
     return this.httpClient.post<User>('/api/user', user);
   }
 
   getUser(user: User): Observable<User> {
-    return this.httpClient.get<User>(`/api/user/${user.id}`);
+    return this.httpClient.get<User>(`/api/user/${user._id}`);
   }
 
   editUser(user: User): Observable<any> {
-    return this.httpClient.put(`/api/user/${user.id}`, user, { responseType: 'text' });
+    console.log(user._id + ',' + user.userId);
+    return this.httpClient.put(`/api/user/${user._id}`, user, { responseType: 'text' });
   }
 
   deleteUser(user: User): Observable<any> {
-    return this.httpClient.delete(`/api/user/${user.id}`, { responseType: 'text' });
+    return this.httpClient.delete(`/api/user/${user._id}`, { responseType: 'text' });
   }
 
 /*

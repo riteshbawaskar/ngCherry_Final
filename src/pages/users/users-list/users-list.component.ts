@@ -1,10 +1,12 @@
+import { FlexPerfectScrollbarDirective } from './../../../core/directives/flex-perfect-scrollbar/flex-perfect-scrollbar.directive';
+import { UsersDialogComponent } from './../users-dialog/users-dialog.component';
 import { fuseAnimations } from './../../../theme/animation';
 import { User } from './../../../models/user';
 import { ConfirmDialogComponent } from './../../../core/components/confirm-dialog/confirm-dialog.component';
 import { UsersService } from './../../../services/users.service';
 import { Component, OnDestroy, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -16,79 +18,111 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   animations: fuseAnimations
 })
 export class UsersListComponent implements OnInit {
 
-  @ViewChild('dialogContent', {static: false})
-    dialogContent: TemplateRef<any>;
+  @ViewChild('dialogContent', { static: false })
+  dialogContent: TemplateRef<any>;
 
-    users: User[];
-    user: User;
-    dataSource: FilesDataSource | null;
-    displayedColumns = ['checkbox', 'userId', 'firstName', 'lastName', 'email' ];
-    selectedUsers: any[];
-    checkboxes: {};
-    dialogRef: any;
-    confirmDialogRef: MatDialogRef<ConfirmDialogComponent>;
+  users: User[];
+  displayedColumns = ['avatar','firstName', 'lastName', 'email', 'userId', 'buttons'];
+  selectedUsers: any[];
+  checkboxes: {};
+  dialogRef: any;
+  confirmDialogRef: MatDialogRef<ConfirmDialogComponent>;
 
-  constructor(public userService: UsersService, public matSnackBar: MatSnackBar) {
+  constructor(public userService: UsersService, public matSnackBar: MatSnackBar, private _matDialog: MatDialog) {
 
-   }
+  }
 
   ngOnInit() {
-
-    this.dataSource = new FilesDataSource(this.userService);
-    this.dataSource.connect();
-    this.getUser();
+    this.getUsers();
   }
 
-  getUser(): void {
-  /*  this.userService.getUser(this.auth.currentUser).subscribe(
-      data => this.user = data,
-      error => console.log(error),
-      () => this.isLoading = false
-    );*/
+  getUsers(): void {
+    this.userService.getUsers().subscribe(
+      data => {
+        this.users = data;
+        console.log(data);
+      },
+      error => console.log(error)
+    );
+    /*  this.userService.getUser(this.auth.currentUser).subscribe(
+        data => this.user = data,
+        error => console.log(error),
+        () => this.isLoading = false
+      );*/
   }
 
-  editUser(user): void
-  {
+  editUser(user): void {
+    console.log('edit-contact');
+    this.dialogRef = this._matDialog.open(UsersDialogComponent, {
+      panelClass: 'user-form-dialog',
+      data: {
+        user: user,
+        action: 'edit'
+      }
+    });
 
+    this.dialogRef.afterClosed()
+      .subscribe(response => {
+        if (!response) {
+          return;
+        }
+        const actionType: string = response[0];
+        const formData: FormGroup = response[1];
+        switch (actionType) {
+          /**
+           * Save
+           */
+          case 'save':
+            this.userService.editUser(formData.getRawValue()).subscribe(
+              res => {
+                  this.matSnackBar.open('User updated:' + res, 'OK', {
+                      verticalPosition: 'top',
+                      duration        : 2000 });
+                  },
+                    error => console.log(error)
+                );
+
+            break;
+          /**
+           * Delete
+           */
+          case 'delete':
+            this.deleteUser(user);
+
+            break;
+        }
+      });
   }
 
+  deleteUser(user: User): void {
+    console.log(user);
+    this.userService.deleteUser(user).subscribe(
+      res => {
+        this.matSnackBar.open('User deleted', 'OK', {
+          verticalPosition: 'top',
+          duration: 2000
+        });
+        this.getUsers();
+      }
+    );
+
+  }
   save(user: User): void {
     this.userService.editUser(user).subscribe(
       res => {
         this.matSnackBar.open('User saved', 'OK', {
           verticalPosition: 'top',
-          duration        : 2000
-      });
+          duration: 2000
+        });
+        this.getUsers();
       },
       error => console.log(error)
     );
   }
-
-
-}
-export class FilesDataSource extends DataSource<any>
-{
-
-    constructor(private _usersService: UsersService)
-    {
-        super();
-    }
-
-
-    connect(): Observable<any[]>
-    {
-        return this._usersService.getUsers();
-    }
-
-    /**
-     * Disconnect
-     */
-    disconnect(): void
-    {
-    }
 }
 

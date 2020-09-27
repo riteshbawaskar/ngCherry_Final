@@ -1,6 +1,6 @@
 ﻿
 export class User  {
-  id: string;
+  _id: string;
   userId: string;
   password: string;
   firstName: string;
@@ -12,7 +12,7 @@ export class User  {
   GetUser(user)
   {
       {
-          this.id = user.id ;
+          this._id = user._id ;
           this.firstName = user.firstName || '';
           this.lastName = user.lastName || '';
           this.userId = user.userId || '';
