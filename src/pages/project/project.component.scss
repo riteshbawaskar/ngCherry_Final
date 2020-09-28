@@ -1,16 +1,11 @@
 @import "../../theme/fuse";
 
-#component-lib {
+#project-lib {
     height: calc(100vh - 80px);
   
 
     .header {
-        position: relative;
-        flex: 1 0 auto;
-        height: 230px;
-        max-height: 230px;
-        text-align: center;
-        overflow: hidden;
+        .logo-text{ margin-left: 10px;}
 
         @include media-breakpoint('xs') {
             height: 240px;
@@ -115,7 +110,7 @@
             max-width: 1040px;
             margin: 0 auto;
 
-            .no-libs {
+            .no-projects {
                 font-size: 24px;
                 margin: 24px 0;
                 text-align: center;

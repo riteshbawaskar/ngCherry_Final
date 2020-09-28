@@ -1,3 +1,7 @@
+import { ProjectDialogComponent } from './../pages/project/project-dialog/project-dialog.component';
+import { ProjectComponent } from './../pages/project/project.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ProjectService } from './../services/project.service';
 import { MaterialModule } from './../core/modules/material.module';
 import { SharedModule } from './../core/modules/shared.module';
 import { ToolbarComponent } from './toolbar/toolbar.component';
@@ -16,15 +20,19 @@ import { RightmenuComponent } from './rightmenu/rightmenu.component';
     AppComponent,
     SideMenuComponent,
     ToolbarComponent,
-      RightmenuComponent,
+    RightmenuComponent,
+    ProjectComponent,
+    ProjectDialogComponent
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MaterialModule
   ],
-  providers: [SidenavService],
+  providers: [SidenavService, ProjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

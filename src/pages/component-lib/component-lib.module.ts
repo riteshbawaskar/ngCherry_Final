@@ -1,6 +1,6 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentLibDialogComponent } from './component-lib-dialog/component-lib-dialog.component';
 import { ComponentLibService } from './../../services/component-lib.service';
-import { NewComponentLibComponent } from './new-componentLib/new-componentLib.component';
 import { MaterialModule } from './../../core/modules/material.module';
 import { SharedModule } from './../../core/modules/shared.module';
 import { ComponentLibRoutes } from './component-lib.routing';
@@ -13,9 +13,10 @@ import { ComponentLibComponent } from './component-lib.component';
     CommonModule,
     ComponentLibRoutes,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
-  declarations: [ComponentLibComponent, NewComponentLibComponent, ComponentLibDialogComponent],
+  declarations: [ComponentLibComponent, ComponentLibDialogComponent],
   providers: [ComponentLibService]
 })
 export class ComponentLibModule { }

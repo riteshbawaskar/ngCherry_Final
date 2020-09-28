@@ -13,7 +13,7 @@ export class ComponentLibService {
 constructor(private httpClient: HttpClient) {}
 
 getLibs(): Observable<ComponentLib[]> {
-  return this.httpClient.get<ComponentLib[]>('/api/componentlib');
+  return this.httpClient.get<ComponentLib[]>('/api/componentlibs');
 }
 
 countLibs(): Observable<number> {

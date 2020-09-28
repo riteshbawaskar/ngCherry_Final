@@ -1,14 +1,12 @@
 <div id="component-lib" class="page-layout simple">
-
     <!-- HEADER -->
     <div class="header accent p-16 p-sm-24" fxLayout="row" fxLayoutAlign="center center">
-
         <div class="hero-text">
             <mat-icon class="hero-icon">school</mat-icon>
-            <h1 [@animate]="{value:'*',params:{delay:'100ms', y:'25px'}}">
+            <h1 [@animate]="{ value: '*', params: { delay: '100ms', y: '25px' } }">
                 WELCOME TO COMPONENT LIBRARY
             </h1>
-            <h3 [@animate]="{value:'*',params:{delay:'100ms', y:'25px'}}">
+            <h3 [@animate]="{ value: '*', params: { delay: '100ms', y: '25px' } }">
                 Create your own Component Library and add it here.
             </h3>
         </div>
@@ -24,42 +22,54 @@
         </div>-->
 
         <!-- ADD BUTTON -->
-        <div fxLayoutAlign="space-around end" style="align-self: flex-end;">
-            <button mat-raised-button (click)="AddNewComponent()"
-                class="add-component-button fuse-white mt-24 mt-md-0">
+        <div fxLayoutAlign="space-around end" style="align-self: flex-end">
+            <button mat-raised-button (click)="AddNewComponent()" class="add-component-button fuse-white mt-24 mt-md-0">
                 <span>ADD NEW COMPONENT</span>
             </button>
         </div>
         <!-- / ADD BUTTON -->
-
-
     </div>
     <!-- / HEADER -->
 
     <!-- CONTENT -->
-    <div class="content p-24">
+    <div class="content p-24 contentpanel" FlexPerfectScrollbar>
+        <div fxLayout="column"  fxLayoutAlign="center" >
+               <div class="courses" fxLayout="row wrap" fxLayoutAlign="center" [@animateStagger]="{ value: '50' }">
+                <div class="course" *ngFor="let lib of componentlibs" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="33"
+                    [@animate]="{ value: '*', params: { y: '100%' } }">
+                    <div class="course-content" fxLayout="column" fxFlex="1 1 auto">
+                        <div class="header" fxLayout="row" fxLayoutAlign="center center">
+                            <div class="category" fxFlex>
+                              <!--  {{ lib.name }} -->
+                            </div>
 
-        <div fxLayout="column" fxLayoutAlign="center">
+                            <div class="length" fxLayout="row" fxLayoutAlign="center center">
+                                <button mat-icon-button (click)="EditComponent(lib)">
+                                    <mat-icon class="length-icon s-20">edit</mat-icon>
+                                  </button>
+                                
+                            </div>
+                        </div>
 
-            <div class="filters" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row"
-                fxLayoutAlign.gt-xs="space-between center">
+                        <div class="content" fxLayout="column" fxLayoutAlign="center center" fxFlex="1 1 auto">
+                            <div class="h1">{{ lib.name }}</div>
+                            <div class="updated">{{ lib.description }}</div>
+                        </div>
 
-            </div>
-
-            <div class="courses" fxLayout="row wrap" fxLayoutAlign="center" [@animateStagger]="{value:'50'}">
-
-
-
-
-                <div class="no-courses">
-                    No component libraries found!
+                        <div class="footer" fxLayout="row" fxLayoutAlign="center center">
+                            <button mat-button color="accent" [routerLink]="'/apps/academy/courses/' + lib.name">
+                                ACTIONS
+                            </button>
+                            <button mat-button color="accent" [routerLink]="'/apps/academy/courses/' + lib.name">
+                                ENVIRONMENT
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
+                <div class="no-libs" *ngIf="componentlibs.length == 0">No component libraries found!</div>
             </div>
-
         </div>
-
     </div>
     <!-- / CONTENT -->
-
 </div>

@@ -2,12 +2,14 @@ import * as express from 'express';
 
 import UserCtrl from './controllers/user';
 import ComponentLibCtrl from './controllers/componentlib';
+import ProjectCtrl from './controllers/project';
 
 function setRoutes(app): void {
   const router = express.Router();
  
   const userCtrl = new UserCtrl();
   const componentlibCtrl = new ComponentLibCtrl();
+  const projectCtrl = new ProjectCtrl();
 
   // Cats
  // router.route('/cats').get(catCtrl.getAll);
@@ -35,6 +37,14 @@ function setRoutes(app): void {
   router.route('/componentlib/:id').put(componentlibCtrl.update);
   router.route('/componentlib/:id').delete(componentlibCtrl.delete);
 
+
+   // Project
+  router.route('/projects').get(projectCtrl.getAll);
+  router.route('/project/count').get(projectCtrl.count);
+  router.route('/project').post(projectCtrl.insert);
+  router.route('/project/:id').get(projectCtrl.get);
+  router.route('/project/:id').put(projectCtrl.update);
+  router.route('/project/:id').delete(projectCtrl.delete);
 
   // Apply the routes to our application with the prefix /api
   app.use('/api', router);

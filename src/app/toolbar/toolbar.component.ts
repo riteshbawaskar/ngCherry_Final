@@ -16,6 +16,7 @@ export class ToolbarComponent implements OnInit {
 @Input() projects: Project[] = [{
   _id: '1',
   name: 'G20-Rates',
+  active: true,
   description: 'This is rates test project',
   components: [],
 }];

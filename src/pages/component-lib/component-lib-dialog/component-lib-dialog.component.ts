@@ -1,3 +1,4 @@
+import { ComponentLibService } from './../../../services/component-lib.service';
 import { MaterialModule } from './../../../core/modules/material.module';
 import { ComponentLib } from './../../../models/component-lib';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -20,17 +21,19 @@ export class ComponentLibDialogComponent implements OnInit {
   componentlib: ComponentLib;
   libForm: FormGroup;
   dialogTitle: string;
+  
   constructor(
     public matDialogRef: MatDialogRef<ComponentLibDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private _data: any,
     private _formBuilder: FormBuilder
+    
   ) {
     // Set the defaults
     this.action = _data.action;
 
     if (this.action === 'edit') {
       this.dialogTitle = 'Edit Component Lib';
-      this.componentlib = _data.ComponentLib;
+      this.componentlib = _data.componentlib;
     } else {
       this.dialogTitle = 'New Component';
       this.componentlib = new ComponentLib();

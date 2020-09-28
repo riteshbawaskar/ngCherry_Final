@@ -1,3 +1,4 @@
+import { ProjectComponent } from './../pages/project/project.component';
 import { UsersModule } from './../pages/users/users.module';
 import { UsersComponent } from './../pages/users/users.component';
 import { NgModule } from '@angular/core';
@@ -15,7 +16,8 @@ const routes: Routes = [{ path: '', component: DashboardComponent},
                         { path: 'users', loadChildren: usersModule},
                         { path: 'design', loadChildren: designModule},
                         {path: 'dashboard', component: DashboardComponent},
-                        {path: 'components', loadChildren: componentModule}
+                        {path: 'components', loadChildren: componentModule},
+                        {path: 'projects', component: ProjectComponent},
                       ];
 
 @NgModule({

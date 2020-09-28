@@ -1,0 +1,84 @@
+<div id="project-lib" class="page-layout simple">
+  <!-- HEADER -->
+  <div class="header accent p-16 p-sm-24" fxLayout="column" fxLayoutAlign="start"
+  fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+
+ <!-- APP TITLE -->
+ <div fxLayout="row" fxLayoutAlign="start center">
+
+     <div class="logo" fxLayout="row" fxLayoutAlign="start center">
+         <mat-icon class="logo-icon mr-16"
+                   [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">how_to_vote
+         </mat-icon>
+         <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+             Projects
+         </span>
+     </div>
+
+ </div>
+ <!-- / APP TITLE -->
+
+ <!-- SEARCH 
+ <div class="ml-sm-32" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+
+     <div class="search-wrapper mt-16 mt-sm-0">
+
+         <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
+             <mat-icon>search</mat-icon>
+             <input [formControl]="searchInput" placeholder="Search for a user">
+         </div>
+
+     </div>
+
+ </div>
+ / SEARCH -->
+<!-- ADD BUTTON -->
+<div fxLayoutAlign="space-around end" style="align-self: flex-end">
+  <button mat-raised-button (click)="addProject()" class="add-project-button fuse-white mt-24 mt-md-0">
+      <span>ADD Project</span>
+  </button>
+</div>
+<!-- / ADD BUTTON -->
+
+</div>
+<!-- / HEADER -->
+
+  <!-- CONTENT -->
+  <div class="content p-24 contentpanel" FlexPerfectScrollbar>
+      <div fxLayout="column"  fxLayoutAlign="center" >
+             <div class="courses" fxLayout="row wrap" fxLayoutAlign="center" [@animateStagger]="{ value: '50' }">
+              <div class="course" *ngFor="let proj of projects" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="33"
+                  [@animate]="{ value: '*', params: { y: '100%' } }">
+                  <div class="course-content" fxLayout="column" fxFlex="1 1 auto">
+                      <div class="header" fxLayout="row" fxLayoutAlign="center center">
+                          <div class="category" fxFlex>
+                            <!--  {{ lib.name }} -->
+                          </div>
+
+                          <div class="length" fxLayout="row" fxLayoutAlign="center center">
+                              <button mat-icon-button (click)="editProject(proj)">
+                                  <mat-icon class="length-icon s-20">edit</mat-icon>
+                                </button>
+                              
+                          </div>
+                      </div>
+
+                      <div class="content" fxLayout="column" fxLayoutAlign="center center" fxFlex="1 1 auto">
+                          <div class="h1">{{ proj.name }}</div>
+                          <div class="updated">{{ proj.description }}</div>
+                      </div>
+
+                      <div class="footer" fxLayout="row" fxLayoutAlign="center center">
+                          <button mat-button color="accent" [routerLink]="'/apps/academy/courses/' + proj.name">
+                              USERS
+                          </button>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="no-projects" *ngIf="projects.length == 0">No Projects found!</div>
+          </div>
+      </div>
+  </div>
+  <!-- / CONTENT -->
+</div>
