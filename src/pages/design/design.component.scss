@@ -1,10 +1,11 @@
 @import "../../theme/fuse.scss";
 
 #design {
-
+    height: calc(100vh - 80px);
+    width : calc(100vh-20px);
     .center {
         padding: 32px !important;
-        max-width: 1400px;
+      //  max-width: 1400px;
         margin: 0 auto;
 
       

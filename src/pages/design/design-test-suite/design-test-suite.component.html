@@ -4,47 +4,9 @@
       <!-- TOOLBAR TOP -->
       <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
           <!-- USER AVATAR WRAPPER -->
-          <div class="avatar-wrapper">
-              
-              <mat-icon class="s-16 status" 
-                        [matMenuTriggerFor]="userStatusMenu"></mat-icon>
-
-              <!-- USER STATUS -->
-              <mat-menu id="user-status-menu" #userStatusMenu="matMenu">
-
-                  <button mat-menu-item >
-                      <div fxLayout="row" fxLayoutAlign="start center">
-                          <mat-icon class="s-16 status online"></mat-icon>
-                          <span>Online</span>
-                      </div>
-                  </button>
-
-                  <button mat-menu-item >
-                      <div fxLayout="row" fxLayoutAlign="start center">
-                          <mat-icon class="s-16 status away"></mat-icon>
-                          <span>Away</span>
-                      </div>
-                  </button>
-
-                  <button mat-menu-item >
-                      <div fxLayout="row" fxLayoutAlign="start center">
-                          <mat-icon class="s-16 status do-not-disturb"></mat-icon>
-                          <span>Do not disturb</span>
-                      </div>
-                  </button>
-
-                  <button mat-menu-item >
-                      <div fxLayout="row" fxLayoutAlign="start center">
-                          <mat-icon class="s-16 status offline"></mat-icon>
-                          <span>Offline</span>
-                      </div>
-                  </button>
-              </mat-menu>
-              <!-- / USER STATUS -->
-
-          </div>
-          <!-- / USER AVATAR -->
-
+            <div>
+                Test Suites
+            </div>
           <div>
               <button mat-icon-button
                       [matMenuTriggerFor]="userMenu"
@@ -53,11 +15,9 @@
               </button>
               <mat-menu #userMenu="matMenu">
                   <button mat-menu-item >
-                      Profile
+                      Add Test Suite
                   </button>
-                  <button mat-menu-item >
-                      Logout
-                  </button>
+                
               </mat-menu>
           </div>
 
@@ -72,7 +32,7 @@
 
               <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
                   <mat-icon class="s-16 secondary-text">search</mat-icon>
-                  <input  type="text" placeholder="Search or start new chat" fxFlex>
+                  <input  type="text" placeholder="Search test suite" fxFlex>
               </div>
 
           </div>
@@ -88,7 +48,7 @@
 <!-- / SIDENAV HEADER -->
 
 <!-- SIDENAV CONTENT -->
-<div class="sidenav-content" fusePerfectScrollbar fxFlex>
+<div class="sidenav-content" FlexPerfectScrollbar fxFlex>
 
   <!-- CHATS CONTENT -->
   <div  [@animateStagger]="{value:'50'}">
