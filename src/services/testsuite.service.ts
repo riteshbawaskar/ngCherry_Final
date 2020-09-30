@@ -16,24 +16,24 @@ export class TestsuiteService {
   }
 
   countSuites(): Observable<number> {
-    return this.httpClient.get<number>('/api/suites/count');
+    return this.httpClient.get<number>('/api/suite/count');
   }
 
-  addSuites(testsuite: TestSuite): Observable<TestSuite> {
-    return this.httpClient.post<TestSuite>('/api/TestSuite', TestSuite);
+  addSuites(testSuite: TestSuite): Observable<TestSuite> {
+    return this.httpClient.post<TestSuite>('/api/suite', testSuite);
   }
 
   getSuite(testSuite: TestSuite): Observable<TestSuite> {
-    return this.httpClient.get<TestSuite>(`/api/TestSuite/${testSuite._id}`);
+    return this.httpClient.get<TestSuite>(`/api/suite/${testSuite._id}`);
   }
 
   editSuite(testSuite: TestSuite): Observable<any> {
 
-    return this.httpClient.put(`/api/TestSuite/${testSuite._id}`, TestSuite, { responseType: 'text' });
+    return this.httpClient.put(`/api/suite/${testSuite._id}`, TestSuite, { responseType: 'text' });
   }
 
   deleteSuite(testSuite: TestSuite): Observable<any> {
-    return this.httpClient.delete(`/api/TestSuite/${testSuite._id}`, { responseType: 'text' });
+    return this.httpClient.delete(`/api/suite/${testSuite._id}`, { responseType: 'text' });
   }
 
 

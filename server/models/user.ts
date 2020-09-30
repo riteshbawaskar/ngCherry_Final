@@ -4,13 +4,14 @@ import * as mongoose from 'mongoose';
 const userSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
-  userId: String,
-  email: { type: String, unique: true, lowercase: true, trim: true },
+  userId: { type: String, unique: true, lowercase: true, trim: true },
+  email: String,
   password: String
 });
 
 // Before saving the user, hash the password
 userSchema.pre('save', function(next): void {
+  console.log('calling pre save');
   const user = this;
   if (!user.isModified('password')) { return next(); }
   bcrypt.genSalt(10, (err, salt) => {

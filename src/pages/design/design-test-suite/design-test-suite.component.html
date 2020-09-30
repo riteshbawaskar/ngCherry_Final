@@ -1,128 +1,94 @@
-<div>
-  <!-- CHATS TOOLBAR -->
-  <mat-toolbar>
-      <!-- TOOLBAR TOP -->
-      <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-          <!-- USER AVATAR WRAPPER -->
+<div class="sidenav-container">
+    <!-- TOOLBAR -->
+    <mat-toolbar>
+        <!-- TOOLBAR TOP -->
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+            <!-- USER AVATAR WRAPPER -->
             <div>
-                Test Suites
+                <mat-icon>inbox</mat-icon> Test Suites
             </div>
-          <div>
-              <button mat-icon-button
-                      [matMenuTriggerFor]="userMenu"
-                      aria-label="more">
-                  <mat-icon>more_vert</mat-icon>
-              </button>
-              <mat-menu #userMenu="matMenu">
-                  <button mat-menu-item >
-                      Add Test Suite
-                  </button>
+            <div>
+                <button mat-icon-button [matMenuTriggerFor]="userMenu" aria-label="more">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #userMenu="matMenu">
+                    <button mat-menu-item (click)="AddTestSuite()">
+                        Add Suite
+                    </button>
+                </mat-menu>
+            </div>
+        </mat-toolbar-row>
+        <!-- / TOOLBAR TOP -->
+        <!-- TOOLBAR BOTTOM -->
+        <mat-toolbar-row>
+            <!-- SEARCH -->
+            <div class="search-wrapper" fxFlex fxLayout="row" fxLayoutAlign="start center">
+                <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon class="s-16 secondary-text">search</mat-icon>
+                    <input type="text" placeholder="Search test suite" fxFlex>
+                </div>
+            </div>
+            <!-- / SEARCH -->
+        </mat-toolbar-row>
+        <!-- / TOOLBAR BOTTOM -->
+    </mat-toolbar>
+    <!-- / TOOLBAR -->
+    <!--  CONTENT -->
+    <div FlexPerfectScrollbar class="sidenav-content ng-tns-c261-80 ps">
+        <!-- SUITES CONTENT -->
+        <div [@animateStagger]="{value:'50'}">
+            <!-- CHATS LIST-->
+            <mat-accordion>
+                <mat-expansion-panel *ngFor="let data of suitesHierarchy">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon>folder</mat-icon>
+                            {{ data.name }}
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            {{ data.children.length }} suites
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <button fxLayout="column" (click)="SelectSuite(suite)" mat-button class="contact" *ngFor="let suite of data.children"
+                        [@animate]="{value:'*',params:{y:'100%'}}">
+
+                        <div fxLayout="row" fxLayoutAlign="start center">
+
+                            <div class="pr-4" fxFlex fxLayout="column" fxLayoutAlign="center start">
+                                <div class="contact-name">{{suite.name}}</div>
+                                <div class="contact-last-message">{{suite.description}}</div>
+                            </div>
+
+                            <div fxFlex="row" fxLayoutAlign="end center" class="contact-last-message-time">
                 
-              </mat-menu>
-          </div>
-
-      </mat-toolbar-row>
-      <!-- / TOOLBAR TOP -->
-
-      <!-- TOOLBAR BOTTOM -->
-      <mat-toolbar-row>
-
-          <!-- SEARCH -->
-          <div class="search-wrapper" fxFlex fxLayout="row" fxLayoutAlign="start center">
-
-              <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
-                  <mat-icon class="s-16 secondary-text">search</mat-icon>
-                  <input  type="text" placeholder="Search test suite" fxFlex>
-              </div>
-
-          </div>
-          <!-- / SEARCH -->
-
-      </mat-toolbar-row>
-      <!-- / TOOLBAR BOTTOM -->
-
-  </mat-toolbar>
-  <!-- / CHATS TOOLBAR -->
-
-</div>
-<!-- / SIDENAV HEADER -->
-
-<!-- SIDENAV CONTENT -->
-<div class="sidenav-content" FlexPerfectScrollbar fxFlex>
-
-  <!-- CHATS CONTENT -->
-  <div  [@animateStagger]="{value:'50'}">
-
-      <!-- CHATS LIST-->
-      <div class="chat-list" fxLayout="column">
-
-          <div matSubheader>
-              Chats
-          </div>
-
-          <button mat-button class="contact"
-                  [@animate]="{value:'*',params:{y:'100%'}}">
-
-              <div fxLayout="row" fxLayoutAlign="start center">
-
-               
-                  <div fxLayout="row" fxFlex>
-
-                      <div class="pr-4" fxFlex fxLayout="column" fxLayoutAlign="center start">
-                          <div class="contact-name">Suite1</div>
-                          <div class="contact-last-message">this is suite1</div>
-                      </div>
-
-                      <div fxLayout="column" fxLayoutAlign="start end">
-                          <div class="contact-last-message-time">
-                             date
-                          </div>
-                          <div class="mt-4 unread-message-count accent">unread message</div>
-                      </div>
-
-                  </div>
-
-              </div>
-
-          </button>
-
-      </div>
-      <!-- / CHATS LIST-->
-
-      <!-- CONTACTS LIST-->
-      <div class="contact-list" fxLayout="column">
-
-          <div matSubheader>
-              Contacts
-          </div>
-
-          <button mat-button class="contact"
-                  
-                  [@animate]="{value:'*',params:{y:'100%'}}">
-
-              <div fxLayout="row" fxLayoutAlign="start center">
-
+                                <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="More"
+                                        (click)="$event.stopPropagation();">
+                                    <mat-icon class="secondary-text">more_vert</mat-icon>
+                                </button>
                 
-                  <div fxLayout="column" fxLayoutAlign="start start">
-                      <div class="contact-name">RFX</div>
-                      <p class="contact-mood">rfx test suite</p>
-                  </div>
+                                <mat-menu #moreMenu="matMenu">
+                                    <button mat-menu-item aria-label="remove" (click)="deleteSuite(suite)">
+                                        <mat-icon>delete</mat-icon>
+                                        <span>Remove</span>
+                                    </button>
+                                </mat-menu>
+                            </div>
+                            
+                        </div>
 
-              </div>
+                    </button>
 
-          </button>
+                </mat-expansion-panel>
+            </mat-accordion>
 
-      </div>
-      <!-- / CONTACTS LIST-->
+            <!-- / SUITES LIST-->
 
-      <!-- NO RESULTS MESSAGE -->
-      <div class="no-results-message">
-          No results..
-      </div>
-      <!-- NO RESULTS MESSAGE-->
+            <!-- NO RESULTS MESSAGE -->
+            <div class="no-results-message" *ngIf="suitesHierarchy.length ===0">
+                No suites..
+            </div>
+            <!-- NO RESULTS MESSAGE-->
+        </div>
 
-  </div>
-  <!-- / CHATS CONTENT -->
-
-</div>
-<!-- / SIDENAV CONTENT -->
+    </div>

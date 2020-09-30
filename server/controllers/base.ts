@@ -25,7 +25,7 @@ abstract class BaseCtrl {
   // Insert
   insert = async (req, res) => {
     try {
-      console.log('received inset request');
+      console.log('received insert request');
       const obj = await new this.model(req.body).save();
       res.status(201).json(obj);
       console.log(req.body);

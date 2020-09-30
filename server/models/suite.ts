@@ -1,25 +1,36 @@
 import * as mongoose from 'mongoose';
-import * as IncrementId from './IncrementId';
 
-const SuiteSchema = new mongoose.Schema({
-  suiteid: { type: Number, unique: true, trim: true },
+
+var CounterSchema = mongoose.Schema({
+  _id: {type: String, required: true},
+  seq: { type: Number, default: 0 }
+
+});
+
+const counter = mongoose.model('counter', CounterSchema);
+
+const suiteSchema = new mongoose.Schema({
+  _id: String,
   name: String,
   description: String,
-  group: Boolean,
-  projectid: [String]
+  group: String,
+  projectid: String,
 });
 
-const Suite = mongoose.model('Suite', SuiteSchema);
-
-SuiteSchema.pre('save', function(next): void {
+suiteSchema.pre('save', function(next) {
+  var doc = this;
   if (this.isNew) {
-      const id =  IncrementId.default.getNextId('Suite');
-      this.id = id; // Incremented
+  counter.findByIdAndUpdate({_id: 'Suite'}, {$inc: { seq: 1} }, {new: true, upsert: true},
+    function(error, counter)   {
+      if(error)
+      {
+          return next(error);
+      }
+      doc._id = counter.seq;
       next();
-  } else {
-      next();
-  }
+  });
+}
 });
 
-export default Project;
-
+const Suite = mongoose.model('Suite', suiteSchema);
+export default Suite;

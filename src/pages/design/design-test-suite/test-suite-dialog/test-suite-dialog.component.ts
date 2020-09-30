@@ -11,7 +11,8 @@ import {
 @Component({
   selector: 'app-test-suite-dialog',
   templateUrl: './test-suite-dialog.component.html',
-  styleUrls: ['./test-suite-dialog.component.scss']
+  styleUrls: ['./test-suite-dialog.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class TestSuiteDialogComponent implements OnInit {
   action: string;
@@ -21,15 +22,15 @@ export class TestSuiteDialogComponent implements OnInit {
 
   constructor(public matDialogRef: MatDialogRef<TestSuiteDialogComponent>,
               @Inject(MAT_DIALOG_DATA) private _data: any,
-              private _formBuilder: FormBuilder,) {
+              private _formBuilder: FormBuilder) {
 
     this.action = _data.action;
 
     if (this.action === 'edit') {
-      this.dialogTitle = 'Edit Project';
+      this.dialogTitle = 'Edit Suite';
       this.testSuite = _data.testSuite;
     } else {
-      this.dialogTitle = 'New Project';
+      this.dialogTitle = 'New Suite';
       this.testSuite = new TestSuite();
     }
 
@@ -40,10 +41,10 @@ export class TestSuiteDialogComponent implements OnInit {
     createForm(): FormGroup {
       return this._formBuilder.group({
         _id: [this.testSuite._id],
-        suiteid:[this.testSuite.suiteid],
         name: [this.testSuite.name],
         description: [this.testSuite.description],
-        group: [this.testSuite.group]
+        group: [this.testSuite.group],
+        projectid: [this.testSuite.projectid]
       });
     }
 

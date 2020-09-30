@@ -1,5 +1,5 @@
 import { fuseAnimations } from './../../../theme/animation';
-import { Component, OnInit , ViewEncapsulation} from '@angular/core';
+import { Component, OnInit , Input, ViewEncapsulation} from '@angular/core';
 
 
 @Component({
@@ -11,7 +11,11 @@ import { Component, OnInit , ViewEncapsulation} from '@angular/core';
 })
 export class DesignTestCaseComponent implements OnInit {
 
+  @Input() suitepanel;
+  @Input() suite;
   constructor() { }
+
+  ToggleSuitePanel(): void { this.suitepanel.toggle(); }
 
   ngOnInit() {
   }

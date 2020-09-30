@@ -4,9 +4,10 @@
       <!-- TOOLBAR TOP -->
       <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
           <!-- USER AVATAR WRAPPER -->
-            <div>
-                Test Suites
-            </div>
+          <button mat-icon-button (click)="ToggleSuitePanel()">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <h2 *ngIf="suite">Suite: {{ suite.name }}</h2> 
           <div>
               <button mat-icon-button
                       [matMenuTriggerFor]="userMenu"

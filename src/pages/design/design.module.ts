@@ -1,3 +1,4 @@
+import { TestSuiteDialogComponent } from './design-test-suite/test-suite-dialog/test-suite-dialog.component';
 import { DesignTestStepComponent } from './design-test-step/design-test-step.component';
 import { DesignTestCaseComponent } from './design-test-case/design-test-case.component';
 import { DesignTestSuiteComponent } from './design-test-suite/design-test-suite.component';
@@ -15,6 +16,6 @@ import { DesignComponent } from './design.component';
     SharedModule,
     MaterialModule
   ],
-  declarations: [DesignComponent, DesignTestSuiteComponent,DesignTestCaseComponent, DesignTestStepComponent]
+  declarations: [TestSuiteDialogComponent, DesignComponent, DesignTestSuiteComponent,DesignTestCaseComponent, DesignTestStepComponent]
 })
 export class DesignModule { }

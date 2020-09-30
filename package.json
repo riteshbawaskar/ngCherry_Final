@@ -6,6 +6,7 @@
     "start": "ng serve --proxy-config proxy.conf.json --open",
     "dev": "concurrently  \"ng serve --proxy-config proxy.conf.json --open\" \"tsc -w -p server\" \"nodemon dist/server/app.js\"",
     "build": "ng build",
+    "server": "concurrently \"tsc -w -p server\" \"nodemon dist/server/app.js\"",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
