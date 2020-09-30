@@ -45,7 +45,7 @@
                             <mat-icon>folder</mat-icon>
                             {{ data.name }}
                         </mat-panel-title>
-                        <mat-panel-description>
+                        <mat-panel-description class="contact-last-message">
                             {{ data.children.length }} suites
                         </mat-panel-description>
                     </mat-expansion-panel-header>
@@ -55,7 +55,7 @@
 
                         <div fxLayout="row" fxLayoutAlign="start center">
 
-                            <div class="pr-4" fxFlex fxLayout="column" fxLayoutAlign="center start">
+                            <div class="pr-4"  style="width:100%" fxLayout="column" fxLayoutAlign="center start">
                                 <div class="contact-name">{{suite.name}}</div>
                                 <div class="contact-last-message">{{suite.description}}</div>
                             </div>
@@ -70,7 +70,15 @@
                                 <mat-menu #moreMenu="matMenu">
                                     <button mat-menu-item aria-label="remove" (click)="deleteSuite(suite)">
                                         <mat-icon>delete</mat-icon>
-                                        <span>Remove</span>
+                                        <span>Delete</span>
+                                    </button>
+                                    <button mat-menu-item aria-label="remove" (click)="deleteSuite(suite)">
+                                        <mat-icon>edit</mat-icon>
+                                        <span>Edit</span>
+                                    </button>
+                                    <button mat-menu-item aria-label="remove" (click)="deleteSuite(suite)">
+                                        <mat-icon>play_circle_outline</mat-icon>
+                                        <span>Execute</span>
                                     </button>
                                 </mat-menu>
                             </div>

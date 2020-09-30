@@ -5,4 +5,5 @@ export class TestSuite extends Entity {
     description: string;
     group: string;
     projectid: string;
+    active: boolean;
   }

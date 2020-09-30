@@ -4,14 +4,16 @@ import UserCtrl from './controllers/user';
 import ComponentLibCtrl from './controllers/componentlib';
 import ProjectCtrl from './controllers/project';
 import SuiteCtrl from './controllers/suite';
+import TestCaseCtrl from './controllers/testcase';
 
 function setRoutes(app): void {
   const router = express.Router();
- 
+
   const userCtrl = new UserCtrl();
   const componentlibCtrl = new ComponentLibCtrl();
   const projectCtrl = new ProjectCtrl();
   const suiteCtrl = new SuiteCtrl();
+  const testCtrl = new TestCaseCtrl();
 
   // Cats
  // router.route('/cats').get(catCtrl.getAll);
@@ -55,6 +57,14 @@ function setRoutes(app): void {
   router.route('/suite/:id').get(suiteCtrl.get);
   router.route('/suite/:id').put(suiteCtrl.update);
   router.route('/suite/:id').delete(suiteCtrl.delete);
+
+    // TestCases
+  router.route('/tests/').get(testCtrl.getAll);
+  router.route('/test/count').get(testCtrl.count);
+  router.route('/test').post(testCtrl.insert);
+  router.route('/test/:id').get(testCtrl.get);
+  router.route('/test/:id').put(testCtrl.update);
+  router.route('/test/:id').delete(testCtrl.delete);
 
   // Apply the routes to our application with the prefix /api
   app.use('/api', router);

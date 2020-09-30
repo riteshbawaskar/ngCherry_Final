@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 
-var CounterSchema = mongoose.Schema({
+const CounterSchema = mongoose.Schema({
   _id: {type: String, required: true},
   seq: { type: Number, default: 0 }
 
@@ -8,4 +8,5 @@ var CounterSchema = mongoose.Schema({
 
 const counter = mongoose.model('counter', CounterSchema);
 
-export default counter;
+module.exports = counter;
+

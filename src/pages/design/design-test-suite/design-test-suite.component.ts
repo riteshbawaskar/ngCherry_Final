@@ -96,6 +96,7 @@ export class DesignTestSuiteComponent implements OnInit {
         if (!response) {
           return;
         }
+        
         console.log(response.getRawValue());
         this.testSuiteservice.addSuites(response.getRawValue()).subscribe(
           res => {

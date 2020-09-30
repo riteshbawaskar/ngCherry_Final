@@ -1,13 +1,6 @@
 import * as mongoose from 'mongoose';
+const counter = require('./counter');
 
-
-var CounterSchema = mongoose.Schema({
-  _id: {type: String, required: true},
-  seq: { type: Number, default: 0 }
-
-});
-
-const counter = mongoose.model('counter', CounterSchema);
 
 const suiteSchema = new mongoose.Schema({
   _id: String,

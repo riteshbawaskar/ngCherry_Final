@@ -44,7 +44,8 @@ export class TestSuiteDialogComponent implements OnInit {
         name: [this.testSuite.name],
         description: [this.testSuite.description],
         group: [this.testSuite.group],
-        projectid: [this.testSuite.projectid]
+        projectid: [this.testSuite.projectid],
+        active: [this.testSuite.active]
       });
     }
 
