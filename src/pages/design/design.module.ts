@@ -1,3 +1,4 @@
+import { ExecutionDialogComponent } from './design-test-case/execution-dialog/execution-dialog.component';
 import { TestCaseDialogComponent } from './design-test-case/test-case-dialog/test-case-dialog.component';
 import { TestSuiteDialogComponent } from './design-test-suite/test-suite-dialog/test-suite-dialog.component';
 import { DesignTestStepComponent } from './design-test-step/design-test-step.component';
@@ -17,6 +18,12 @@ import { DesignComponent } from './design.component';
     SharedModule,
     MaterialModule
   ],
-  declarations: [ TestCaseDialogComponent, TestSuiteDialogComponent, DesignComponent, DesignTestSuiteComponent,DesignTestCaseComponent, DesignTestStepComponent]
+  declarations: [TestCaseDialogComponent,
+    TestSuiteDialogComponent,
+    ExecutionDialogComponent,
+    DesignComponent,
+    DesignTestSuiteComponent,
+    DesignTestCaseComponent,
+    DesignTestStepComponent]
 })
 export class DesignModule { }

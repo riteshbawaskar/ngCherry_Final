@@ -1,3 +1,7 @@
+import { group } from '@angular/animations';
+import { TestSuite } from './../../../models/test-suite';
+import { ExecutionDialogComponent } from './execution-dialog/execution-dialog.component';
+import { Execution } from './../../../models/execution';
 import { TestCase } from './../../../models/test-case';
 import { FormGroup } from '@angular/forms';
 import { TestcaseService } from './../../../services/testcase.service';
@@ -21,10 +25,10 @@ import { SharedModule } from './../../../core/modules/shared.module';
 export class DesignTestCaseComponent implements OnInit {
 
   @Input() suitepanel;
-  @Input() suite;
-  dialogRef: any;
-  testcases: TestCase[];
+  @Input() suite: TestSuite;
+  @Input() testcases: TestCase[];
   testcase: TestCase;
+  dialogRef: any;
 
 
   constructor(private _matDialog: MatDialog, private testcaseservice: TestcaseService, public matSnackBar: MatSnackBar) { }
@@ -35,11 +39,44 @@ export class DesignTestCaseComponent implements OnInit {
   ngOnInit() {
   }
 
+  executeTest()
+  {
+    let execution = new Execution();
+
+    execution.suiteid = this.suite._id;
+    execution.testcasefilter = [];
+    execution.teststepfilter = [];
+    execution.name = this.suite.group + ' >> ' + this.suite.name;
+    
+    const dialogRef = this._matDialog.open(ExecutionDialogComponent, {
+      width: '600px',
+      disableClose: true,
+      panelClass: 'execution-dialog',
+       data: execution
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('New case Added' + result);
+      execution = result;
+    });
+  }
+
+  getTestCases(): void {
+    this.testcaseservice.getAllTests().subscribe(data =>{
+      this.testcases = data;
+    });
+  }
+
+selectTest(test){}
+editTest(test){}
+deleteTest(test){}
+copyTest(test){}
+
   AddTestCase(): void
   {
     this.dialogRef = this._matDialog.open(TestCaseDialogComponent, {
       panelClass: 'test-case-dialog',
-      data: { action: 'new' }
+      data: { action: 'new', suite: this.suite }
     });
 
     this.dialogRef.afterClosed()

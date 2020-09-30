@@ -5,6 +5,7 @@ import ComponentLibCtrl from './controllers/componentlib';
 import ProjectCtrl from './controllers/project';
 import SuiteCtrl from './controllers/suite';
 import TestCaseCtrl from './controllers/testcase';
+import ExecutionCtrl from 'controllers/execution';
 
 function setRoutes(app): void {
   const router = express.Router();
@@ -14,6 +15,7 @@ function setRoutes(app): void {
   const projectCtrl = new ProjectCtrl();
   const suiteCtrl = new SuiteCtrl();
   const testCtrl = new TestCaseCtrl();
+  const executionCtrl = new ExecutionCtrl();
 
   // Cats
  // router.route('/cats').get(catCtrl.getAll);
@@ -60,11 +62,20 @@ function setRoutes(app): void {
 
     // TestCases
   router.route('/tests/').get(testCtrl.getAll);
+  router.route('/tests/:id').get(testCtrl.getTestCases);
   router.route('/test/count').get(testCtrl.count);
   router.route('/test').post(testCtrl.insert);
   router.route('/test/:id').get(testCtrl.get);
   router.route('/test/:id').put(testCtrl.update);
   router.route('/test/:id').delete(testCtrl.delete);
+
+  // Executions
+  router.route('/executions').get(executionCtrl.getAll);
+  router.route('/execution/count').get(executionCtrl.count);
+  router.route('/execution').post(executionCtrl.insert);
+  router.route('/execution/:id').get(executionCtrl.get);
+  router.route('/execution/:id').put(executionCtrl.update);
+  router.route('/execution/:id').delete(executionCtrl.delete);
 
   // Apply the routes to our application with the prefix /api
   app.use('/api', router);

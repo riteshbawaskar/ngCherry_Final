@@ -1,0 +1,134 @@
+<div class="dialog-content-wrapper" appDraggableDialog>
+  <mat-toolbar matDialogTitle class="mat-accent m-0">
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">Execute Test</span>
+      <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+    <mat-toolbar-row class="toolbar-bottom py-16" fxLayout="column" fxLayoutAlign="center center">
+      <div class="contact-name mt-8">{{data.name}}</div>
+  </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div mat-dialog-content class="p-24 pb-0 m-0" FlexPerfectScrollbar>
+
+      <div class="invisible" fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex=50>
+          <mat-label>Id</mat-label>
+          <mat-icon matSuffix class="secondary-text">star</mat-icon>
+          <input name="_id"  matInput [(ngModel)]="data._id" />
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start start">
+        
+        
+        <mat-form-field appearance="outline" fxFlex=50>
+          <mat-label>Description</mat-label>
+          <input name="description"  matInput type="text" max-rows="1" [(ngModel)]="data.description"/>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex=50>
+          <mat-label>Agent</mat-label>
+          <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+          <input name="agent"  matInput required [(ngModel)]="data.agent" />
+        </mat-form-field>
+      </div>
+       
+      <div fxLayout="row" fxLayoutAlign="start start">
+
+        <mat-form-field appearance="outline" fxFlex="50">
+          <mat-label>Schedule</mat-label>
+          <mat-select  required [(ngModel)]="data.schedule">
+              <mat-option [value]="'Now'">
+                  Now
+              </mat-option>
+              <mat-option [value]="'Daily'">
+                  Daily
+              </mat-option>
+              <mat-option [value]="'Weekly'">
+                  Weekly
+              </mat-option>
+              <mat-option [value]="'Monthly'">
+                  Monthly
+              </mat-option>
+          </mat-select>
+          <mat-icon matSuffix class="secondary-text">outlined_flag</mat-icon>
+        </mat-form-field>
+      
+
+        <mat-form-field appearance="outline" fxFlex=50>
+          <mat-label>Date</mat-label>
+          <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+          <input name="date"  matInput  [(ngModel)]="data.date"/>
+        </mat-form-field>
+        
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+          <mat-label>Test Filter</mat-label>
+          <mat-chip-list #testfilter name="testfilter">
+            <mat-chip *ngFor="let tag of data.testcasefilter" [removable]="true" (removed)="removetestfilter(tag)">
+              {{tag}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+            <input [matChipInputFor]="testfilter" [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="addtestfilter($event)" />
+          </mat-chip-list>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+          <mat-label>Step Filter</mat-label>
+          <mat-chip-list #stepfilter name="stepfilter" >
+            <mat-chip *ngFor="let tag of data.teststepfilter" [removable]="true" (removed)="removestepfilter(tag)">
+              {{tag}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+            <input [matChipInputFor]="stepfilter" [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="addstepfilter($event)" />
+          </mat-chip-list>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row"  fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex=50>
+          <mat-label>Continue previous execution</mat-label>
+          <input name="continueprevexecution" matInput type="text" [(ngModel)]="data.continueprevexecution">
+        </mat-form-field>
+       
+      
+        <mat-form-field appearance="outline" fxFlex="50">
+          <mat-label>Option</mat-label>
+          <mat-select  [(ngModel)]="data.option">
+              <mat-option [value]="'All'">
+                  All
+              </mat-option>
+              <mat-option [value]="'Failed'">
+                  Failed
+              </mat-option>
+          </mat-select>
+          <mat-icon matSuffix class="secondary-text">outlined_flag</mat-icon>
+        </mat-form-field>
+      </div>
+  
+  </div>
+
+  <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
+    <button *ngIf="data._id" mat-button class="mr-8" (click)="matDialogRef.close(['delete', data])"
+      aria-label="Delete" matTooltip="Delete">
+      DELETE
+    </button>
+
+    <button *ngIf="data._id == null" mat-button class="save-button" (click)="matDialogRef.close(data)"
+       aria-label="SAVE">
+      RUN
+    </button>
+
+    <button *ngIf="data._id" mat-button class="save-button" (click)="matDialogRef.close(['save', data])"
+       aria-label="SAVE">
+      SAVE
+    </button>
+  </div>
+</div>

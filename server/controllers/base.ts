@@ -49,6 +49,7 @@ abstract class BaseCtrl {
   update = async (req, res) => {
     try {
       console.log('searching for' + req.params.id );
+      console.log(req.body);
       await this.model.findOneAndUpdate({ _id: req.params.id }, req.body);
       res.sendStatus(200);
     } catch (err) {

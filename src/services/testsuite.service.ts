@@ -29,7 +29,7 @@ export class TestsuiteService {
 
   editSuite(testSuite: TestSuite): Observable<any> {
 
-    return this.httpClient.put(`/api/suite/${testSuite._id}`, TestSuite, { responseType: 'text' });
+    return this.httpClient.put(`/api/suite/${testSuite._id}`, testSuite, { responseType: 'text' });
   }
 
   deleteSuite(testSuite: TestSuite): Observable<any> {

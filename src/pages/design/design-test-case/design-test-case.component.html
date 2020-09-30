@@ -18,6 +18,9 @@
                   <button mat-menu-item (click)="AddTestCase()" >
                       Add Test Case
                   </button>
+                  <button mat-menu-item (click)="executeTest()" >
+                    Execute Tests
+                </button>
                 
               </mat-menu>
           </div>
@@ -44,6 +47,27 @@
 
   </mat-toolbar>
   <!-- / CHATS TOOLBAR -->
+  <div class="test-container" *ngIf="testcases">
+    <mat-selection-list #suites [multiple]="false" class="test-cases">
+      <mat-list-option checkboxPosition="before" (click)="selectTest(test)"
+        *ngFor="let test of testcases ">
+        <mat-icon mat-list-icon (click)="editTest(test)">edit</mat-icon>
+        <mat-icon mat-list-icon (click)="deleteTest(test)">delete_outline</mat-icon>
+        <mat-icon mat-list-icon (click)="copyTest(test)">file_copy</mat-icon>
+        <div matLine>
+          <div class="id">{{test._id}}.</div>
 
+          <mat-chip-list style="float:right" *ngFor="let tags of test.tags">
+            <mat-chip color="primary" selected>{{ tags}} </mat-chip>
+          </mat-chip-list>
+
+        </div>
+        <h3 matLine class="name" [ngStyle]="{'text-decoration': test.active?'none':'line-through','color': test.active?'black':'grey'}"> {{test.name}}
+        </h3>
+        <p matLine class="desc"> {{test.description}} </p>
+        <mat-divider></mat-divider>
+      </mat-list-option>
+    </mat-selection-list>
+</div>
 </div>
 <!-- / SIDENAV HEADER -->

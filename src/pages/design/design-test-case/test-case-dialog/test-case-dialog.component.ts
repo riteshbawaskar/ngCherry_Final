@@ -33,6 +33,8 @@ this.testCase = _data.testSuite;
 } else {
 this.dialogTitle = 'New TestCase';
 this.testCase = new TestCase();
+this.testCase.testsuiteid = _data.suite._id;
+this.testCase.active = true;
 this.testCase.tags = [];
 }
 
@@ -46,7 +48,8 @@ _id: [this.testCase._id],
 name: [this.testCase.name],
 description: [this.testCase.description],
 tags: [this.testCase.tags],
-testsuiteid: [this.testCase.testsuiteid]
+testsuiteid: [this.testCase.testsuiteid],
+active: [this.testCase.active]
 });
 }
 

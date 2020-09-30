@@ -34,8 +34,8 @@ export class DesignTestSuiteComponent implements OnInit {
 
   deleteSuite(suite)
   {
-    this.SelectedSuite.emit(suite);
-    console.log('suite Selected' + suite.id);
+    this.testSuiteservice.deleteSuite(suite);
+    console.log('suite Deleted' + suite.id);
   }
   SelectSuite(suite)
   {
@@ -55,7 +55,7 @@ export class DesignTestSuiteComponent implements OnInit {
         const match = result.find((obj) => obj.name === key);
         if (match === undefined) {
           const group = {
-            id: 0,
+            _id: 0,
             name: key,
             description: '',
             group: '',
@@ -70,7 +70,7 @@ export class DesignTestSuiteComponent implements OnInit {
         }
       });
       const child = {
-            id: item._id,
+            _id: item._id,
             name: item.name,
             description: item.description,
             group: item.group,
@@ -82,6 +82,53 @@ export class DesignTestSuiteComponent implements OnInit {
   });
 
     return output;
+  }
+
+  editSuite(testSuite)
+  {
+    console.log(testSuite);
+    this.dialogRef = this._matDialog.open(TestSuiteDialogComponent, {
+      panelClass: 'test-suite-dialog',
+      data: {
+        testSuite: testSuite,
+        action: 'edit'
+      }
+    });
+
+    this.dialogRef.afterClosed()
+      .subscribe(response => {
+        if (!response) {
+          return;
+        }
+        const actionType: string = response[0];
+        const formData: FormGroup = response[1];
+        switch (actionType) {
+          /**
+           * Save
+           */
+          case 'save':
+            console.log(formData.getRawValue());
+            this.testSuiteservice.editSuite(formData.getRawValue()).subscribe(
+              res => {
+                  this.matSnackBar.open('TestSuite updated:', 'OK', {
+                      verticalPosition: 'top',
+                      duration        : 2000 });
+                  },
+                    error => console.log(error)
+                );
+
+            break;
+          /**
+           * Delete
+           */
+          case 'delete':
+            this.deleteSuite(testSuite);
+
+            break;
+        }
+
+        this.getHierarchyData();
+      });
   }
 
   AddTestSuite(): void

@@ -4,8 +4,8 @@ export class Configuration {
     id: string;
     name: string;
     configtype: string;
-    environment: Environment;
-    appliation: string;
+    environment: string;
+    componentlib: string;
     config: KeyValuePair;
 }
 

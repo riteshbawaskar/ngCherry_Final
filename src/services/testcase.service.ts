@@ -15,6 +15,10 @@ export class TestcaseService {
     return this.httpClient.get<TestCase[]>(`/api/tests/${SuiteId}`);
   }
 
+  getAllTests(): Observable<TestCase[]> {
+    return this.httpClient.get<TestCase[]>('/api/tests/');
+  }
+
   addTest(testCase: TestCase): Observable<TestCase> {
     return this.httpClient.post<TestCase>('/api/test', testCase);
   }

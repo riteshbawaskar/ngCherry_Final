@@ -1,6 +1,5 @@
-import {Entity} from './entity';
-
-export class TestStep {
+import { Entity } from './entity';
+export class TestStep extends Entity{
     id: string;
     testcaseid: string;
     name: string;
