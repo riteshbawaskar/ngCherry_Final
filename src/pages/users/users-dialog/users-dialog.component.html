@@ -16,6 +16,10 @@
 
         <form [formGroup]="userForm">
 
+            <div fxLayout="row" fxLayoutAlign="end center">
+                Active <mat-slide-toggle formControlName="active"></mat-slide-toggle>
+            </div>
+
             <div class="invisible" fxLayout="row" fxLayoutAlign="start start">
                 <mat-form-field appearance="outline" fxFlex>
                     <mat-label>Id</mat-label>
@@ -63,6 +67,8 @@
                     <input name="email" formControlName="email" matInput type="email">
                 </mat-form-field>
             </div>
+
+            
         </form>
 
     </div>

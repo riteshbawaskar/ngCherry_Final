@@ -1,6 +1,5 @@
-export class Environment {
-    id: string;
-    name: string; //ALPHA , BRAVO, CHARLIE  ,DEV
+import { Entity } from './entity';
+export class Environment extends Entity{
+    name: string; // ALPHA , BRAVO, CHARLIE  ,DEV
     description: string;
-
 }

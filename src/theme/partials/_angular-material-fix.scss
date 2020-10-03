@@ -34,6 +34,11 @@ button {
     }
 }
 
+.mat-form-field-wrapper{
+    padding:0px;
+    margin:0px;
+}
+
 // Fix: "Smooth scrolling for iOS"
 .mat-dialog-container {
     -webkit-overflow-scrolling: touch;
@@ -41,11 +46,11 @@ button {
 
 // Fix: "Inconsistent font sizes across elements"
 .mat-checkbox {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .mat-radio-button {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .mat-pseudo-checkbox-checked:after {

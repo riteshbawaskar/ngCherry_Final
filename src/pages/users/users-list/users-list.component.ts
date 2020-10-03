@@ -4,13 +4,14 @@ import { fuseAnimations } from './../../../theme/animation';
 import { User } from './../../../models/user';
 import { ConfirmDialogComponent } from './../../../core/components/confirm-dialog/confirm-dialog.component';
 import { UsersService } from './../../../services/users.service';
-import { Component, OnDestroy, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, Input, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
 
 
 
@@ -25,13 +26,14 @@ export class UsersListComponent implements OnInit {
 
   @ViewChild('dialogContent', { static: false })
   dialogContent: TemplateRef<any>;
-
+  @Input() userSearchValue;
   users: User[];
   displayedColumns = ['avatar','firstName', 'lastName', 'email', 'userId', 'buttons'];
   selectedUsers: any[];
   checkboxes: {};
   dialogRef: any;
   confirmDialogRef: MatDialogRef<ConfirmDialogComponent>;
+  public dataSource: any;
 
   constructor(public userService: UsersService, public matSnackBar: MatSnackBar, private _matDialog: MatDialog) {
 
@@ -41,10 +43,15 @@ export class UsersListComponent implements OnInit {
     this.getUsers();
   }
 
+  ngOnChanges(){
+    this.dataSource.filter = this.userSearchValue.trim();
+  }
+
   getUsers(): void {
     this.userService.getUsers().subscribe(
       data => {
         this.users = data;
+        this.dataSource = new MatTableDataSource<User>(this.users);
         console.log(data);
       },
       error => console.log(error)

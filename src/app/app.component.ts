@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { Project } from './../models/project';
 import { SidenavService } from './../services/sidenav.service';
 import { Component , ViewChild, Inject} from '@angular/core';
@@ -19,12 +20,12 @@ import { DOCUMENT } from '@angular/common';
 export class AppComponent {
   title = 'cherry';
   name = 'Cherry';
-  user: string;
+  loggedin: string;
   projects: Project[];
 
   public onSideNavChange: boolean;
 
-  constructor(private sidenavService: SidenavService, @Inject(DOCUMENT) private document: any) {
+  constructor(private sidenavService: SidenavService, @Inject(DOCUMENT) private document: any, public auth: AuthService) {
     this.sidenavService.sideNavState$.subscribe((res) => {
       console.log(res);
       this.onSideNavChange = res;

@@ -25,7 +25,7 @@ abstract class BaseCtrl {
   // Insert
   insert = async (req, res) => {
     try {
-      console.log('received insert request');
+      console.log('received insert request : ' + JSON.stringify(req.body));
       const obj = await new this.model(req.body).save();
       res.status(201).json(obj);
       console.log(req.body);
@@ -39,6 +39,7 @@ abstract class BaseCtrl {
   get = async (req, res) => {
     try {
       const obj = await this.model.findOne({ _id: req.params.id });
+      console.log('get: ' + obj );
       res.status(200).json(obj);
     } catch (err) {
       return res.status(500).json({ error: err.message });

@@ -1,3 +1,4 @@
+import { ExecutionService } from './../../../services/execution.service';
 import { group } from '@angular/animations';
 import { TestSuite } from './../../../models/test-suite';
 import { ExecutionDialogComponent } from './execution-dialog/execution-dialog.component';
@@ -8,7 +9,7 @@ import { TestcaseService } from './../../../services/testcase.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TestCaseDialogComponent } from './test-case-dialog/test-case-dialog.component';
 import { fuseAnimations } from './../../../theme/animation';
-import { Component, OnInit , Input, ViewEncapsulation} from '@angular/core';
+import { Component, OnInit , Input, Output, EventEmitter, ViewEncapsulation} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MaterialModule } from './../../../core/modules/material.module';
@@ -27,11 +28,13 @@ export class DesignTestCaseComponent implements OnInit {
   @Input() suitepanel;
   @Input() suite: TestSuite;
   @Input() testcases: TestCase[];
+  @Output() SelectedTest = new EventEmitter();
   testcase: TestCase;
   dialogRef: any;
 
 
-  constructor(private _matDialog: MatDialog, private testcaseservice: TestcaseService, public matSnackBar: MatSnackBar) { }
+  constructor(private _matDialog: MatDialog, private testcaseservice: TestcaseService, 
+              private executionservice: ExecutionService , public matSnackBar: MatSnackBar) { }
 
 
   ToggleSuitePanel(): void { this.suitepanel.toggle(); }
@@ -56,8 +59,13 @@ export class DesignTestCaseComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('New case Added' + result);
       execution = result;
+      this.executionservice.addExecution(execution).subscribe(res => {
+          this.matSnackBar.open('Execution Scheduled', 'OK', {
+          verticalPosition: 'top',
+          duration: 2000
+        });
+      });
     });
   }
 
@@ -67,7 +75,10 @@ export class DesignTestCaseComponent implements OnInit {
     });
   }
 
-selectTest(test){}
+selectTest(test): void {
+  this.SelectedTest.emit(test);
+}
+
 editTest(test){}
 deleteTest(test){}
 copyTest(test){}

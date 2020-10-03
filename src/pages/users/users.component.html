@@ -26,7 +26,7 @@
 
                 <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
                     <mat-icon>search</mat-icon>
-                    <input [formControl]="searchInput" placeholder="Search for a user">
+                    <input matInput #userSearchValue [formControl]="searchInput" placeholder="Search for a user">
                 </div>
 
             </div>
@@ -45,7 +45,7 @@
         <div  class="center p-24 pb-56 pr-sm-92" >
             <!-- CONTENT -->
             <div class="content" >
-                 <app-users-list ></app-users-list> 
+                 <app-users-list [userSearchValue]="userSearchValue.value" ></app-users-list> 
             </div>
             <!-- / CONTENT -->
         </div>

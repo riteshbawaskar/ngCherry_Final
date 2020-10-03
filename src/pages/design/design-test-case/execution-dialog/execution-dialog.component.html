@@ -25,8 +25,8 @@
         
         
         <mat-form-field appearance="outline" fxFlex=50>
-          <mat-label>Description</mat-label>
-          <input name="description"  matInput type="text" max-rows="1" [(ngModel)]="data.description"/>
+          <mat-label>Environment </mat-label>
+          <input name="environment"  matInput type="text" max-rows="1" [(ngModel)]="data.environment"/>
         </mat-form-field>
 
         <mat-form-field appearance="outline" fxFlex=50>
@@ -36,6 +36,20 @@
         </mat-form-field>
       </div>
        
+      
+      <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+          <mat-label>Tag</mat-label>
+          <mat-chip-list #tagfilter name="tagfilter">
+            <mat-chip *ngFor="let tag of data.tag" [removable]="true" (removed)="removetagfilter(tag)">
+              {{tag}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+            <input [matChipInputFor]="tagfilter" [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="addtagfilter($event)" />
+          </mat-chip-list>
+        </mat-form-field>
+      </div>
+
       <div fxLayout="row" fxLayoutAlign="start start">
 
         <mat-form-field appearance="outline" fxFlex="50">

@@ -3,7 +3,7 @@ import { ComponentLibDialogComponent } from './component-lib-dialog/component-li
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ComponentLibService } from './../../services/component-lib.service';
 import { fuseAnimations } from './../../theme/animation';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormGroup } from '@angular/forms';
 
@@ -11,7 +11,8 @@ import { FormGroup } from '@angular/forms';
   selector: 'app-component-lib',
   templateUrl: './component-lib.component.html',
   styleUrls: ['./component-lib.component.scss'],
-  animations: fuseAnimations
+  animations: fuseAnimations,
+  encapsulation: ViewEncapsulation.None,
 })
 export class ComponentLibComponent implements OnInit {
 

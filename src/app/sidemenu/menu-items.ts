@@ -11,7 +11,7 @@ export const menus = [
     },
     {
         'name': 'Execution',
-        'icon': 'list',
+        'icon': 'account_balance_wallet',
         'link': '/execution',
     },
     {

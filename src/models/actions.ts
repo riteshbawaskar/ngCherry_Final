@@ -1,10 +1,11 @@
 import {Entity} from './entity';
 
-export class Action extends Entity {
-    componentName: string;
+export class Actions extends Entity {
+    componentid: string;
     name: string;
     description: string;
+    active: boolean;
     input: any[];
     validation: any[];
-
   }
+  

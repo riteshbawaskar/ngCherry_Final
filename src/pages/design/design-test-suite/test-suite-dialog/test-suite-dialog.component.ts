@@ -1,4 +1,3 @@
-import { group } from '@angular/animations';
 import { TestSuite } from './../../../../models/test-suite';
 import { Component, Inject, ViewEncapsulation, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';

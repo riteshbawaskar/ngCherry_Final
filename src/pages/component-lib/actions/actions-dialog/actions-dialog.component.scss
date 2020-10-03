@@ -1,7 +1,7 @@
-@import "../../../theme/fuse";
+@import "../../../../theme/fuse";
 
-.component-lib-dialog {
-
+.actions-dialog {
+   
     .invisible{
         display: block;
         visibility: hidden;
@@ -31,8 +31,10 @@
 
     .mat-dialog-actions
     {
+        flex: 1 0 auto;
         margin-bottom: 0px;
     }
+    .mat-form-field{ padding:5px;}
 
     .mat-dialog-content{
         margin:0px;

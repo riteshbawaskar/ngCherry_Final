@@ -1,3 +1,6 @@
+import { UsersService } from './../services/users.service';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthService } from './../services/auth.service';
 import { ProjectDialogComponent } from './../pages/project/project-dialog/project-dialog.component';
 import { ProjectComponent } from './../pages/project/project.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -30,9 +33,15 @@ import { RightmenuComponent } from './rightmenu/rightmenu.component';
     SharedModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: (): string => localStorage.getItem('token'),
+        // whitelistedDomains: ['localhost:3000', 'localhost:4200']
+      }
+    })
   ],
-  providers: [SidenavService, ProjectService],
+  providers: [SidenavService, ProjectService, AuthService, UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

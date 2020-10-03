@@ -1,3 +1,4 @@
+import { TeststepService } from './../../services/teststep.service';
 import { TestStep } from './../../models/test-step';
 import { TestcaseService } from './../../services/testcase.service';
 import { TestCase } from './../../models/test-case';
@@ -18,7 +19,14 @@ export class DesignComponent implements OnInit {
   testcases: TestCase[] = [];
   teststeps: TestStep[] = [];
 
-  constructor(private testcaseservice: TestcaseService) { }
+  constructor(private testcaseservice: TestcaseService, private teststepservice: TeststepService) { }
+  onSelectedTest(test): void
+  {
+    this.selectedTest = test;
+    console.log('in design selected test' + test._id);
+    this.teststepservice.getSteps(test._id).subscribe(data => { this.teststeps = data; });
+  }
+
 
   onSelectedSuite(suite): void
   {

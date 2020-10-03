@@ -1,3 +1,4 @@
+import { AuthGuard } from './../core/utils/auth.guard';
 import { ProjectComponent } from './../pages/project/project.component';
 import { UsersModule } from './../pages/users/users.module';
 import { UsersComponent } from './../pages/users/users.component';
@@ -11,13 +12,19 @@ const designModule = () =>
   import('../pages/design/design.module').then((x) => x.DesignModule);
 const componentModule = () =>
   import('../pages/component-lib/component-lib.module').then((x) => x.ComponentLibModule);
+const executionModule = () =>
+  import('../pages/execution/execution.module').then((x) => x.ExecutionModule);
+const accountModule = () =>
+  import('../pages/account/account.module').then((x) => x.AccountModule);
 
-const routes: Routes = [{ path: '', component: DashboardComponent},
+const routes: Routes = [{ path: '', component: DashboardComponent, canActivate: [AuthGuard]},
                         { path: 'users', loadChildren: usersModule},
                         { path: 'design', loadChildren: designModule},
                         {path: 'dashboard', component: DashboardComponent},
                         {path: 'components', loadChildren: componentModule},
                         {path: 'projects', component: ProjectComponent},
+                        {path: 'execution', loadChildren: executionModule},
+                        { path: 'account', loadChildren: accountModule}
                       ];
 
 @NgModule({

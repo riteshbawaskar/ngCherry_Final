@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Project } from './../../models/project';
 
 import { Component, OnInit, Input } from '@angular/core';
@@ -25,7 +26,7 @@ showLoadingBar: boolean;
 
 selectedproject: Project;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, public auth: AuthService) {
 
     router.events.subscribe(
       (event) => {
@@ -45,6 +46,10 @@ selectedMenu(project): void
 
   ngOnInit(): void {
    // this.selectedproject = this.projects[0];
+  }
+
+  Logout(): void {
+    this.auth.logout();
   }
 
 }

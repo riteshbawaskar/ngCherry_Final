@@ -1,3 +1,55 @@
-<p>
-  design-test-step works!
-</p>
+<div>
+  <!-- CHATS TOOLBAR -->
+  <mat-toolbar>
+      <!-- TOOLBAR TOP -->
+      <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+          <!-- USER AVATAR WRAPPER -->
+          <button mat-icon-button >
+            <mat-icon>notes</mat-icon>
+          </button>
+          <h2 *ngIf="testcase">{{testcase._id}}</h2> 
+          <div>
+              <button mat-icon-button
+                      [matMenuTriggerFor]="userMenu"
+                      aria-label="more">
+                  <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #userMenu="matMenu">
+                  <button mat-menu-item (click)="AddTestStep()" >
+                      Add Test Step
+                  </button>                
+              </mat-menu>
+          </div>
+      </mat-toolbar-row>
+      <!-- / TOOLBAR TOP -->
+  </mat-toolbar>
+  <!-- /  TOOLBAR -->
+  <div class="step-layout">
+   
+      <div class="step-container" fxLayout="column">
+        <div cdkDropList class="step-list" (cdkDropListDropped)="drop($event)">
+          <div class="step" *ngFor="let step of teststeps" cdkDrag>
+
+            <!--   -->
+            <div class="step-name" [ngStyle]="{'text-decoration': step.active?'none':'line-through'}">Step {{step.id}}.
+              {{step.name}}
+              <p> <small class="tags" *ngFor="let tag of step.tags">
+                  <span class="tag">
+                    <span>{{tag}}</span>
+                  </span>
+                </small>
+              </p>
+            </div>
+            <div style="align-content: flex-end;">
+              <mat-icon matTooltip='Edit Step' mat-list-icon >edit</mat-icon>
+              <mat-icon matTooltip='Delete Step' mat-list-icon>delete_outline</mat-icon>
+              <mat-icon matTooltip='Copy Step' mat-list-icon>file_copy</mat-icon>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+  </div>
+</div>
+

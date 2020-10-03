@@ -74,5 +74,27 @@ export class ExecutionDialogComponent implements OnInit {
     }
   }
 
+  addtagfilter(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add
+    if ((value || '').trim()) {
+      this.data.tag.push(value.trim());
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  removetagfilter(tag): void {
+    const index = this.data.tag.indexOf(tag);
+
+    if (index >= 0) {
+      this.data.tag.splice(index, 1);
+    }
+  }
   ngOnInit() {}
 }

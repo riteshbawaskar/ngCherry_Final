@@ -6,9 +6,10 @@ const executionSchema = new mongoose.Schema({
     _id: String,
     runid: String,
     name: String,
-    description: String,
+    description: [String],
     agent: String,
     suiteid: String,
+    projectid: String,
     schedule: String, //once , daily , weekkly , monthly
     date: Date,
     testcasefilter: [String],

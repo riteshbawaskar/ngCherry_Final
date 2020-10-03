@@ -51,7 +51,8 @@ export class UsersDialogComponent implements OnInit {
             lastName: [this.user.lastName],
             userId: [this.user.userId],
             password : [this.user.password],
-            email   : [this.user.email]
+            email   : [this.user.email],
+            active: [this.user.active]
         });
     }
 

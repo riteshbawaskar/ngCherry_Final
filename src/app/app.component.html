@@ -1,20 +1,20 @@
 <div class="flex-main-container">
-  <app-toolbar class="above" [sidenav]="leftSidenav" [rightsidemenu]="rightsidemenu" [projects]="projects"></app-toolbar>
+  <app-toolbar class="above" [sidenav]="leftSidenav" [rightsidemenu]="rightsidemenu" [projects]="projects"
+    *ngIf="auth.loggedIn"></app-toolbar>
   <div id="wrapper">
-  <mat-sidenav-container> 
-  <mat-sidenav #leftSidenav mode="side" opened>
-    <app-sidemenu></app-sidemenu> 
-    </mat-sidenav>
-    <mat-sidenav-content [@onMainContentChange]="onSideNavChange ? 'open': 'close'">
-      <div class="content" >
-           <router-outlet></router-outlet>       
+    <mat-sidenav-container>
+      <mat-sidenav #leftSidenav mode="side" *ngIf="auth.loggedIn" opened>
+        <app-sidemenu></app-sidemenu>
+      </mat-sidenav>
+      <mat-sidenav-content [@onMainContentChange]="onSideNavChange ? 'open': 'close'">
+        <div class="content">
+          <router-outlet></router-outlet>
         </div>
-    </mat-sidenav-content>
-    
-    <mat-sidenav #rightsidemenu position="end" mode="over">
-      <app-rightmenu></app-rightmenu>
-  </mat-sidenav>
-  </mat-sidenav-container>  
+      </mat-sidenav-content>
+
+      <mat-sidenav #rightsidemenu position="end" mode="over">
+        <app-rightmenu></app-rightmenu>
+      </mat-sidenav>
+    </mat-sidenav-container>
   </div>
 </div>
-  
