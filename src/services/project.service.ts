@@ -8,6 +8,15 @@ import { Observable } from 'rxjs';
 })
 export class ProjectService {
 
+  selectedProject: Project;
+
+setSelectedProject(project): void
+{
+  this.selectedProject = project;
+}
+
+getSelectedProject(): Project{ return this.selectedProject; }
+
 constructor(private httpClient: HttpClient) { }
 
 

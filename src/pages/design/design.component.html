@@ -1,6 +1,19 @@
 <div id="design" class="page-layout carded fullwidth inner-scroll">
   <!-- TOP BACKGROUND -->
-  <div class="top-bg accent"></div>
+  <div class="header top-bg accent">
+    <div fxLayout="row" fxLayoutAlign="start center">
+
+      <div class="logo" fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon class="logo-icon mr-16"
+                    [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">grid_on
+          </mat-icon>
+          <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+              Test Design
+          </span>
+      </div>
+
+    </div>
+  </div>
   <!-- / TOP BACKGROUND -->
   <!-- CENTER -->
   <div class="center">

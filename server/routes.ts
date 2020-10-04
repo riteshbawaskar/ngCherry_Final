@@ -52,8 +52,9 @@ function setRoutes(app): void {
   router.route('/project/:id').put(projectCtrl.update);
   router.route('/project/:id').delete(projectCtrl.delete);
 
-   // Suites
+   // Suites getTestSuites
   router.route('/suites').get(suiteCtrl.getAll);
+  router.route('/suites/:id').get(suiteCtrl.getTestSuites);
   router.route('/suite/count').get(suiteCtrl.count);
   router.route('/suite').post(suiteCtrl.insert);
   router.route('/suite/:id').get(suiteCtrl.get);

@@ -19,6 +19,18 @@
     .mat-dialog-container {
         padding: 0;
 
+        .mat-form-field {    
+            font-size: 12px;
+        }
+
+        .mat-chip {
+            // border-radius: 3px !important;
+           // font-size: 12px;
+            padding: 3px !important;
+            transform: scale(0.8);
+          
+          }
+          
         .mat-toolbar {
             flex: 1 0 auto;
             min-height: initial;

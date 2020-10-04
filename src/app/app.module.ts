@@ -1,3 +1,5 @@
+import { DashboardModule } from './../pages/dashboard/dashboard.module';
+import { DashboardComponent } from './../pages/dashboard/dashboard.component';
 import { UsersService } from './../services/users.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './../services/auth.service';
@@ -30,6 +32,7 @@ import { RightmenuComponent } from './rightmenu/rightmenu.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    DashboardModule,
     SharedModule,
     BrowserAnimationsModule,
     HttpClientModule,

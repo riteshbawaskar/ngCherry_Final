@@ -17,6 +17,12 @@ button {
     }
 }
 
+mat-menu-panel{
+    mat-menu-item {
+    font-size: 12px;
+    mat-icon{ font-size:20px;}
+    }
+}
 .mat-icon {
 
     // Fix: "Font-weight config affecting the icons"
@@ -46,11 +52,11 @@ button {
 
 // Fix: "Inconsistent font sizes across elements"
 .mat-checkbox {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .mat-radio-button {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .mat-pseudo-checkbox-checked:after {

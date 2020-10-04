@@ -1,114 +1,120 @@
 @import "../../../theme/fuse.scss";
 
 app-design-test-case {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 
-        mat-toolbar {
-      
-            .avatar-wrapper {
+  .mat-button-wrapper {
+    width: 100%;
+  }
+  .contact {
+    width: 100%;
+    white-space: normal;
+    text-align: left;
+    letter-spacing: 0.01em;
+    min-height: 50px;
+    background-color: white;
+    border-bottom: 1px solid;
+    padding: 12px;
+    font-weight: 400;
+    border-radius: 0;
+    border-bottom-color: rgba(0, 0, 0, 0.12);
+   
+    mat-icon {
+      font-size: 14px;
+    }
 
-                .avatar,
-                .status {
-                    cursor: pointer;
-                }
-            }
+    .contact-name {
+      font-size: 12px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
 
-            .search {
-                height: 36px;
-                line-height: 36px;
-                padding: 8px;
-                font-size: 13px;
-                border-radius: 18px;
-                border: 1px solid;
-                overflow: hidden;
-                color: darkgray;
-                .mat-icon {
-                    margin: 0;
-                }
+    .contact-last-message {
+      font-size: 10px;
+      line-height: normal;
+      margin-top: 0;
+      color: rgba(0, 0, 0, 0.54);
 
-                input {
-                    padding: 0 12px 0 8px;
-                    height: 36px;
-                    border: none;
-                    background: whitesmoke;
-                }
+      mat-icon {
+        font-size: 14px;
+      }
+    }
+    .labels {
+        margin-top: 8px;
+
+        .label {
+            font-size: 11px;
+            border-radius: 4px;
+            margin: 0 4px 0 0;
+            padding: 3px 8px;
+            background-color: whitesmoke;
+
+            .label-color {
+                width: 8px;
+                height: 8px;
+                margin-right: 8px;
+                border-radius: 50%;
             }
         }
     }
+  }
 
-    .sidenav-content {
-        overflow: auto;
-        -webkit-overflow-scrolling: touch;
+  mat-toolbar {
+    font-size: 16px;
 
-        .contact-list,
-        .chat-list {
+    .mat-icon {
+      font-size: 18px;
+    }
 
-            .mat-subheader {
-                padding-left: 16px;
-                font-size: 20px;
-                font-weight: 300;
-                height: 88px;
-                line-height: 88px;
-            }
+    .suitename {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 80%;
+    }
 
-            .contact {
-                white-space: normal;
-                text-align: left;
-                letter-spacing: .010em;
-                min-height: 88px;
-                border-bottom: 1px solid;
-                padding: 16px;
-                font-weight: 400;
-                border-radius: 0;
+    .mat-toolbar-row {
+      font-size: 14px;
+      height: 40px;
+      padding-top: 15px;
+      padding-bottom: 12px;
+    }
 
-                .avatar-wrapper {
+    .search {
+      height: 25px;
+      line-height: 25px;
+      padding: 8px;
+      font-size: 13px;
+      border-radius: 18px;
+      border: 1px solid;
+      overflow: hidden;
+      color: darkgray;
+      .mat-icon {
+        margin: 0;
+      }
 
-                    .avatar {
-                        margin-right: 16px;
-                    }
-                }
+      input {
+        padding: 0 12px 0 8px;
+        height: 25px;
+        border: none;
+        background: whitesmoke;
+      }
+    }
+  }
+}
 
-                .contact-name {
-                    font-size: 16px;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                }
+.sidenav-content {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 
-                .contact-last-message {
-                    line-height: normal;
-                    margin-top: 0;
-                }
-
-                .contact-last-message-time {
-                    font-size: 12px;
-                    margin-top: 4px;
-                }
-
-                .contact-mood {
-                    line-height: normal;
-                    margin: 0;
-                }
-
-                .unread-message-count {
-                    font-size: 12px;
-                    border-radius: 50%;
-                    text-align: center;
-                    width: 20px;
-                    height: 20px;
-                    line-height: 20px;
-                }
-            }
-        }
-
-        .no-results-message {
-            position: absolute;
-            width: 100%;
-            height: 88px;
-            padding: 16px;
-            font-size: 15px;
-            font-weight: 400;
-        }
-    
+  .no-results-message {
+    position: absolute;
+    width: 100%;
+    height: 88px;
+    padding: 16px;
+    font-size: 15px;
+    font-weight: 400;
+  }
 }

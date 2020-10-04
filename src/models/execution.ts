@@ -15,5 +15,8 @@ export class Execution extends Entity {
     continueprevexecution: boolean;
     option: string; // All , Failed
     runby: string;
+    total: number;
+    pass: number;
+    fail: number;
     status: string; //scheduled , running , completed
   }

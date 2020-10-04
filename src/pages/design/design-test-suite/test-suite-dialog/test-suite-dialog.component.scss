@@ -23,6 +23,9 @@
             flex: 1 0 auto;
             min-height: initial;
         }
+        .mat-form-field {    
+            font-size: 12px;
+        }
 
         .toolbar-bottom {
             height: auto;
@@ -41,5 +44,6 @@
         max-height: 85vh;
         display: flex;
         flex-direction: column;
+        font-size: 12px;
     }
 }

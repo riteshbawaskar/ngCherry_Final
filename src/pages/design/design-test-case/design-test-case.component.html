@@ -1,73 +1,91 @@
 <div>
-  <!-- CHATS TOOLBAR -->
+  <!--   TOOLBAR -->
   <mat-toolbar>
-      <!-- TOOLBAR TOP -->
-      <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-          <!-- USER AVATAR WRAPPER -->
-          <button mat-icon-button (click)="ToggleSuitePanel()">
-            <mat-icon>menu</mat-icon>
+    <!-- TOOLBAR TOP -->
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+      <!-- USER AVATAR WRAPPER -->
+      <button mat-icon-button (click)="ToggleSuitePanel()">
+        <mat-icon>menu</mat-icon>
+        <span *ngIf="!suite"> Test Cases</span>
+      </button>
+      <span class="suitename" *ngIf="suite"> {{suite.group}} >> {{ suite.name }}</span>
+      <div *ngIf="suite">
+        <button mat-icon-button [matMenuTriggerFor]="userMenu" aria-label="more">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item (click)="AddTestCase()">
+            Add Test Case
           </button>
-          <h2 *ngIf="suite">Suite: {{ suite.name }}</h2> 
-          <div>
-              <button mat-icon-button
-                      [matMenuTriggerFor]="userMenu"
-                      aria-label="more">
-                  <mat-icon>more_vert</mat-icon>
-              </button>
-              <mat-menu #userMenu="matMenu">
-                  <button mat-menu-item (click)="AddTestCase()" >
-                      Add Test Case
-                  </button>
-                  <button mat-menu-item (click)="executeTest()" >
-                    Execute Tests
-                </button>
-                
-              </mat-menu>
-          </div>
+          <button mat-menu-item (click)="executeTest()">
+            Execute Tests
+          </button>
 
-      </mat-toolbar-row>
-      <!-- / TOOLBAR TOP -->
+        </mat-menu>
+      </div>
 
-      <!-- TOOLBAR BOTTOM -->
-      <mat-toolbar-row>
+    </mat-toolbar-row>
+    <!-- / TOOLBAR TOP -->
 
-          <!-- SEARCH -->
-          <div class="search-wrapper" fxFlex fxLayout="row" fxLayoutAlign="start center">
+    <!-- TOOLBAR BOTTOM -->
+    <mat-toolbar-row>
 
-              <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
-                  <mat-icon class="s-16 secondary-text">search</mat-icon>
-                  <input  type="text" placeholder="Search test suite" fxFlex>
-              </div>
+      <!-- SEARCH -->
+      <div class="search-wrapper" fxFlex fxLayout="row" fxLayoutAlign="start center">
 
-          </div>
-          <!-- / SEARCH -->
+        <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon class="s-16 secondary-text">search</mat-icon>
+          <input #testsearch matInput type="text" placeholder="Search test case" fxFlex>
+        </div>
 
-      </mat-toolbar-row>
-      <!-- / TOOLBAR BOTTOM -->
+      </div>
+      <!-- / SEARCH -->
+
+    </mat-toolbar-row>
+    <!-- / TOOLBAR BOTTOM -->
 
   </mat-toolbar>
-  <!-- / CHATS TOOLBAR -->
-  <div class="test-container" *ngIf="testcases">
-    <mat-selection-list #suites [multiple]="false" class="test-cases">
-      <mat-list-option checkboxPosition="before" (click)="selectTest(test)"
-        *ngFor="let test of testcases ">
-        <mat-icon mat-list-icon (click)="editTest(test)">edit</mat-icon>
-        <mat-icon mat-list-icon (click)="deleteTest(test)">delete_outline</mat-icon>
-        <mat-icon mat-list-icon (click)="copyTest(test)">file_copy</mat-icon>
-        <div matLine>
-          <div class="id">{{test._id}}.</div>
+  <!-- /   TOOLBAR -->
+  <div class="contact" *ngIf="testcases">
+    <button fxLayout="column" (click)="selectTest(test)" mat-button class="contact" *ngFor="let test of testcases | filter: testsearch.value"
+      [@animate]="{value:'*',params:{y:'100%'}}" [ngStyle]="{'color': test.active?'':'lightgrey'}">
 
-          <mat-chip-list style="float:right" *ngFor="let tags of test.tags">
-            <mat-chip color="primary" selected>{{ tags}} </mat-chip>
-          </mat-chip-list>
-
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <div class="pr-4" style="width:80%" fxLayout="column" fxLayoutAlign="center start">
+          <div class="contact-name">{{test._id}}. {{test.name}}</div>
+          <div style="width:90%" class="contact-last-message text-truncate">{{test.description}}</div>
+          <div class="labels" fxLayout="row wrap" fxHide fxShow.gt-sm>
+            <div class="label" *ngFor="let tags of test.tags"
+                 fxLayout="row" fxLayoutAlign="start center">
+                <div class="label-color"
+                     [ngStyle]="{'background-color': 'red'}"></div>
+                <div class="label-title">{{tags}}</div>
+            </div>
         </div>
-        <h3 matLine class="name" [ngStyle]="{'text-decoration': test.active?'none':'line-through','color': test.active?'black':'grey'}"> {{test.name}}
-        </h3>
-        <p matLine class="desc"> {{test.description}} </p>
-        <mat-divider></mat-divider>
-      </mat-list-option>
-    </mat-selection-list>
+            </div>
+
+        <div fxFlex="row" fxLayoutAlign="end center" class="contact-last-message-time">
+
+          <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="More" (click)="$event.stopPropagation();">
+            <mat-icon class="secondary-text">more_vert</mat-icon>
+          </button>
+
+          <mat-menu #moreMenu="matMenu">
+            <button mat-menu-item aria-label="remove" (click)="editTest(test)">
+              <mat-icon>edit</mat-icon>
+              <span>Edit</span>
+            </button>
+            <button mat-menu-item aria-label="remove" (click)="deleteTest(test)">
+              <mat-icon>delete</mat-icon>
+              <span>Delete</span>
+            </button>
+            <button mat-menu-item aria-label="remove" (click)="copyTest(test)">
+              <mat-icon>file_copy</mat-icon>
+              <span>Copy Test</span>
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+    </button>
+  </div>
 </div>
-</div>
-<!-- / SIDENAV HEADER -->

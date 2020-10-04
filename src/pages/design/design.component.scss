@@ -3,6 +3,17 @@
 #design {
     height: calc(100vh - 80px);
     width : calc(100vh-20px);
+
+  //  .mat-drawer-inner-container
+   // { overflow:hidden }
+
+    .header {
+
+        .logo-text{ margin-left: 10px;}
+        padding: 24px;
+        
+    }
+
     .center {
         padding: 32px !important;
       //  max-width: 1400px;
@@ -10,6 +21,7 @@
 
       
         .content-card {
+            top:40px;
             position: relative;
             display: flex;
             flex: 1;

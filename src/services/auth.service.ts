@@ -26,12 +26,13 @@ export class AuthService {
   login(emailAndPassword): void {
     this.userService.login(emailAndPassword).subscribe(
       res => {
+        this.loggedIn = true;
         console.log('logging in..');
         localStorage.setItem('token', res.token);
         const decodedUser = this.decodeUserFromToken(res.token);
         this.setCurrentUser(decodedUser);
         this.loggedIn = true;
-        this.router.navigate(['/']);
+        this.router.navigate(['/dashboard']);
       },
       error => {console.log('invalid email or password!');
                 this.matSnackBar.open('Invalid Email or Password:', 'OK', {
@@ -47,7 +48,7 @@ export class AuthService {
     this.loggedIn = false;
     this.isAdmin = false;
     this.currentUser = new User();
-    this.router.navigate(['/']);
+    this.router.navigate(['/account/login']);
   }
 
   decodeUserFromToken(token): object {

@@ -32,10 +32,16 @@ export class DesignTestSuiteComponent implements OnInit {
     this.suitesHierarchy = this.getHierarchyData();
   }
 
-  deleteSuite(suite)
+  deleteSuite(suite): void
   {
-    this.testSuiteservice.deleteSuite(suite);
-    console.log('suite Deleted' + suite.id);
+    this.testSuiteservice.deleteSuite(suite).subscribe(resp => {
+      this.matSnackBar.open('TestSuite Deleted.', 'OK', {
+        verticalPosition: 'top',
+        duration        : 2000 });
+      this.getHierarchyData();
+      },
+      error => {console.log(error)}
+    );
   }
   SelectSuite(suite)
   {
@@ -108,6 +114,7 @@ export class DesignTestSuiteComponent implements OnInit {
            */
           case 'save':
             console.log(formData.getRawValue());
+            
             this.testSuiteservice.editSuite(formData.getRawValue()).subscribe(
               res => {
                   this.matSnackBar.open('TestSuite updated:', 'OK', {
@@ -160,7 +167,9 @@ export class DesignTestSuiteComponent implements OnInit {
             console.log(error);
           }
         );
+        this.getHierarchyData();
       });
+
 
   }
 

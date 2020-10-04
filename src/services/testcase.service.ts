@@ -29,7 +29,7 @@ export class TestcaseService {
 
   editTest(testCase: TestCase): Observable<any> {
 
-    return this.httpClient.put(`/api/test/${testCase._id}`, TestCase, { responseType: 'text' });
+    return this.httpClient.put(`/api/test/${testCase._id}`, testCase, { responseType: 'text' });
   }
 
   deleteTest(testCase: TestCase): Observable<any> {

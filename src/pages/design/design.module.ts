@@ -1,3 +1,4 @@
+import { FilterPipe } from './../../core/pipes/filter.pipes';
 import { ExecutionDialogComponent } from './design-test-case/execution-dialog/execution-dialog.component';
 import { TestCaseDialogComponent } from './design-test-case/test-case-dialog/test-case-dialog.component';
 import { TestSuiteDialogComponent } from './design-test-suite/test-suite-dialog/test-suite-dialog.component';
@@ -19,6 +20,7 @@ import { DesignComponent } from './design.component';
     MaterialModule
   ],
   declarations: [TestCaseDialogComponent,
+    FilterPipe,
     TestSuiteDialogComponent,
     ExecutionDialogComponent,
     DesignComponent,

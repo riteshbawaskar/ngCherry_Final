@@ -1,3 +1,4 @@
+import { ProjectService } from './../../../../services/project.service';
 import { TestSuite } from './../../../../models/test-suite';
 import { Component, Inject, ViewEncapsulation, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -21,7 +22,7 @@ export class TestSuiteDialogComponent implements OnInit {
 
   constructor(public matDialogRef: MatDialogRef<TestSuiteDialogComponent>,
               @Inject(MAT_DIALOG_DATA) private _data: any,
-              private _formBuilder: FormBuilder) {
+              private _formBuilder: FormBuilder, private projectservice: ProjectService) {
 
     this.action = _data.action;
 
@@ -31,6 +32,9 @@ export class TestSuiteDialogComponent implements OnInit {
     } else {
       this.dialogTitle = 'New Suite';
       this.testSuite = new TestSuite();
+      this.testSuite._id = "";
+      console.log(projectservice.selectedProject)
+      this.testSuite.projectid = projectservice.selectedProject._id;
     }
 
     this.dataForm = this.createForm();

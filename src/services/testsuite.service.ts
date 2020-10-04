@@ -1,3 +1,4 @@
+import { ProjectService } from './project.service';
 import { TestSuite } from './../models/test-suite';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -9,9 +10,14 @@ import { Observable } from 'rxjs';
 })
 export class TestsuiteService {
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private projectservice: ProjectService) {}
 
   getSuites(): Observable<TestSuite[]> {
+    const projectId = this.projectservice.selectedProject._id;
+    return this.httpClient.get<TestSuite[]>(`/api/suites/${projectId}`);
+  }
+
+  getAllSuites(): Observable<TestSuite[]> {
     return this.httpClient.get<TestSuite[]>('/api/suites');
   }
 

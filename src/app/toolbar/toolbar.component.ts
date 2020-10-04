@@ -1,3 +1,4 @@
+import { ProjectService } from './../../services/project.service';
 import { AuthService } from './../../services/auth.service';
 import { Project } from './../../models/project';
 
@@ -26,7 +27,7 @@ showLoadingBar: boolean;
 
 selectedproject: Project;
 
-  constructor(private router: Router, public auth: AuthService) {
+  constructor(private router: Router, public auth: AuthService, public projectservice: ProjectService) {
 
     router.events.subscribe(
       (event) => {
@@ -37,11 +38,18 @@ selectedproject: Project;
           this.showLoadingBar = false;
         }
       });
+
+    projectservice.getProjects().subscribe(resp => {
+          this.projects = resp;
+          this.selectedproject = this.projects[0];
+          projectservice.selectedProject = this.projects[0];
+    });
    }
 
 selectedMenu(project): void
 {
- // this.selectedproject = project;
+  this.selectedproject = project;
+  this.projectservice.setSelectedProject(project);
 }
 
   ngOnInit(): void {

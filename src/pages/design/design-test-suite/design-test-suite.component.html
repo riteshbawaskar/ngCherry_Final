@@ -13,7 +13,8 @@
                 </button>
                 <mat-menu #userMenu="matMenu">
                     <button mat-menu-item (click)="AddTestSuite()">
-                        Add Suite
+                        <mat-icon>add</mat-icon>
+                        <span>Add Suite</span>
                     </button>
                 </mat-menu>
             </div>
@@ -25,7 +26,7 @@
             <div class="search-wrapper" fxFlex fxLayout="row" fxLayoutAlign="start center">
                 <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
                     <mat-icon class="s-16 secondary-text">search</mat-icon>
-                    <input type="text" placeholder="Search test suite" fxFlex>
+                    <input type="text" #suitesearch matInput placeholder="Search test suite" fxFlex>
                 </div>
             </div>
             <!-- / SEARCH -->
@@ -34,12 +35,12 @@
     </mat-toolbar>
     <!-- / TOOLBAR -->
     <!--  CONTENT -->
-    <div FlexPerfectScrollbar class="sidenav-content ng-tns-c261-80 ps">
+    <div  class="sidenav-content ng-tns-c261-80 ps">
         <!-- SUITES CONTENT -->
-        <div [@animateStagger]="{value:'50'}">
+        <div [@animateStagger]="{value:'50'}" FlexPerfectScrollbar>
             <!-- CHATS LIST-->
             <mat-accordion>
-                <mat-expansion-panel *ngFor="let data of suitesHierarchy">
+                <mat-expansion-panel *ngFor="let data of suitesHierarchy | filter: suitesearch.value">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             <mat-icon>folder</mat-icon>
@@ -55,9 +56,9 @@
 
                         <div fxLayout="row" fxLayoutAlign="start center">
 
-                            <div class="pr-4"  style="width:100%" fxLayout="column" fxLayoutAlign="center start">
+                            <div class="pr-4"  style="width:80%" fxLayout="column" fxLayoutAlign="center start">
                                 <div class="contact-name">{{suite.name}}</div>
-                                <div class="contact-last-message">{{suite.description}}</div>
+                                <div  style="width:80%" class="contact-last-message text-truncate">{{suite.description}}</div>
                             </div>
 
                             <div fxFlex="row" fxLayoutAlign="end center" class="contact-last-message-time">
@@ -93,7 +94,7 @@
             <!-- / SUITES LIST-->
 
             <!-- NO RESULTS MESSAGE -->
-            <div class="no-results-message" *ngIf="suitesHierarchy.length ===0">
+            <div class="no-results-message" *ngIf="suitesHierarchy === null">
                 No suites..
             </div>
             <!-- NO RESULTS MESSAGE-->
