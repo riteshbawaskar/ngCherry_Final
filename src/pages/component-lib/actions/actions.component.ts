@@ -1,3 +1,5 @@
+import { ComponentLibService } from './../../../services/component-lib.service';
+import { ComponentLib } from './../../../models/component-lib';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActionsService } from './../../../services/action.service';
 import { Actions } from '../../../models/actions';
@@ -9,6 +11,7 @@ import { Component, OnInit, ViewEncapsulation, ViewChild, TemplateRef } from '@a
 import { MaterialModule } from '../../../core/modules/material.module';
 import { SharedModule } from '../../../core/modules/shared.module';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
  
 @Component({
   selector: 'app-actions',
@@ -30,15 +33,23 @@ export class ActionsComponent implements OnInit {
   actions: Actions[];
   confirmDialogRef: MatDialogRef<ConfirmDialogComponent>;
   public dataSource: any;
+  componentlib: ComponentLib;
 
-  constructor( public dialog: MatDialog, public actionsService: ActionsService, public matSnackBar: MatSnackBar) { }
+  constructor( private route: ActivatedRoute , public dialog: MatDialog, 
+               public actionsService: ActionsService, public libservice: ComponentLibService, public matSnackBar: MatSnackBar) {
+                this.componentlib = new ComponentLib();
+                this.componentlib._id =  this.route.snapshot.paramMap.get('id');
+                libservice.getLib(this.componentlib).subscribe(resp => { this.componentlib = resp;
+                                                                         this.getActions();
+                });
+    }
 
   ngOnInit() {
-    this.getActions();
   }
 
   getActions(): void {
-    this.actionsService.getActions().subscribe(
+    console.log('getting action: '+ this.componentlib.name);
+    this.actionsService.getActions(this.componentlib._id).subscribe(
       data => {
         this.actions = data;
         this.dataSource = new MatTableDataSource<Actions>(this.actions);
@@ -50,7 +61,8 @@ export class ActionsComponent implements OnInit {
 
   addAction(): void {
     this.action = new Actions();
-    this.action.componentid = '1';
+    this.action.componentid = this.componentlib._id;
+    this.action.active = true;
     this.action.input = [];
     this.action.validation = [];
     this.action.input.push({key: '', value: ''});
@@ -58,13 +70,14 @@ export class ActionsComponent implements OnInit {
     this.dialogRef = this.dialog.open(ActionsDialogComponent, {
       panelClass: 'actions-dialog',
       width: '600px',
-      data: this.action,
+      data: { action: this.action, lib: this.componentlib },
       disableClose: true,
     });
 
     this.dialogRef.afterClosed().subscribe((result) => {
-      console.log('New Action Added :' + result.name);
-      this.actionsService.addAction(result).subscribe(resp => {
+      result.action.name = result.lib.name + '.' + result.action.name;
+      console.log('New Action Added :' + result.action.name);
+      this.actionsService.addAction(result.action).subscribe(resp => {
         this.matSnackBar.open('Action Added', 'OK', {
           verticalPosition: 'top',
           duration: 2000
@@ -74,22 +87,23 @@ export class ActionsComponent implements OnInit {
   }
 
   editAction(action): void{
-
+    action.name = action.name.split('.')[1];
     this.dialogRef = this.dialog.open(ActionsDialogComponent, {
       panelClass: 'actions-dialog',
       width: '600px',
-      data: action,
+      data: { action: action, lib: this.componentlib },
       disableClose: true,
     });
 
     this.dialogRef.afterClosed().subscribe((result) => {
-      console.log('Action Edited :' + result.name);
-      this.getActions();
-      this.actionsService.editActions(result).subscribe(resp => {
+      console.log('Action Edited :' + result.action.name);
+      result.action.name = result.lib.name + '.' + result.action.name;
+      this.actionsService.editActions(result.action).subscribe(resp => {
         this.matSnackBar.open('Action Edited successfully', 'OK', {
           verticalPosition: 'top',
           duration: 2000
         });
+        this.getActions();
       });
     });
   }

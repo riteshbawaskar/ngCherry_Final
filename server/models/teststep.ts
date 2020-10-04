@@ -16,7 +16,7 @@ active: Boolean
 stepSchema.pre('save', function(next) {
     let doc = this;
     if (this.isNew) {
-    counter.findByIdAndUpdate({_id: 'TestCase'}, {$inc: { seq: 1} }, {new: true, upsert: true},
+    counter.findByIdAndUpdate({_id: 'TestStep'}, {$inc: { seq: 1} }, {new: true, upsert: true},
       function(error, counter)   {
         if (error)
         {

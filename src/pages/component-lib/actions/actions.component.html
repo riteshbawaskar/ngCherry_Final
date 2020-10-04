@@ -10,12 +10,16 @@
       <div class="logo" fxLayout="row" fxLayoutAlign="start center">
         <mat-icon class="logo-icon mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">offline_bolt
         </mat-icon>
-        <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
-          Actions
-        </span>
+        <div class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+          {{componentlib.name}} - Actions
+        </div>
       </div>
 
     </div>
+    <button mat-raised-button class="save-envirionment-button" [routerLink]="'/components'" >
+              <span>BACK</span>
+    </button>
+
   </div>
   <!-- / HEADER -->
 

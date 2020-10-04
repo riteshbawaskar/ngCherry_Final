@@ -1,6 +1,6 @@
 import { Entity } from './entity';
 export class TestStep extends Entity{
-    id: string;
+    seqid: string;
     testcaseid: string;
     name: string;
     action: string;

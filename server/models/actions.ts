@@ -6,7 +6,7 @@ const actionSchema = new mongoose.Schema({
   input: [{key: String, value: String}],
   validation: [{key: String, value: String}],
   active: Boolean,
-  componentlib: [String]
+  componentid: String
 });
 
 const Actions = mongoose.model('Action', actionSchema);

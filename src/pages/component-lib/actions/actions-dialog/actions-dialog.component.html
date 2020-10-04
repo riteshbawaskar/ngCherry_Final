@@ -17,19 +17,19 @@
 
           <div fxLayout="row" fxLayoutAlign="start start">
             <mat-form-field appearance="outline" fxFlex>
-              <span matPrefix style="text-align:right">CRRE. &nbsp;&nbsp;</span>
+              <span matPrefix style="text-align:right">{{data.lib.name}}. &nbsp;&nbsp;</span>
               <mat-label>Name</mat-label>             
-              <input (keydown.space)="$event.preventDefault();" matInput [(ngModel)]="data.name"/> 
+              <input (keydown.space)="$event.preventDefault();" matInput [(ngModel)]="data.action.name"/> 
             </mat-form-field>
           </div>
           <div fxLayout="row" fxLayoutAlign="start start">
             <mat-form-field appearance="outline" fxFlex>
               <mat-label>Description</mat-label> 
-              <textarea matInput placeholder="Description" [(ngModel)]="data.description" type="text" max-rows="4"></textarea> 
+              <textarea matInput placeholder="Description" [(ngModel)]="data.action.description" type="text" max-rows="4"></textarea> 
             </mat-form-field>
           </div>
 
-         <div style="background:aliceblue" fxLayout="row" fxLayoutAlign="start start" *ngFor="let input of data.input">
+         <div style="background:aliceblue" fxLayout="row" fxLayoutAlign="start start" *ngFor="let input of data.action.input">
       
           <button mat-icon-button (click)="removeInputField(input)" >
             <mat-icon style="font-size:20px; height:20px;width:20px"><mat-icon>remove_circle_outline</mat-icon></mat-icon>
@@ -42,7 +42,7 @@
           </mat-form-field>
          </div>
 
-         <div style="background:whitesmoke" fxLayout="row" fxLayoutAlign="start start" *ngFor="let input of data.validation">
+         <div style="background:whitesmoke" fxLayout="row" fxLayoutAlign="start start" *ngFor="let input of data.action.validation">
          
           <button mat-icon-button (click)="removeValidationField(input)" >
             <mat-icon style="font-size:20px; height:20px;width:20px"><mat-icon>remove_circle_outline</mat-icon></mat-icon>

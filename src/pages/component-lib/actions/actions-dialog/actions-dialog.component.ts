@@ -21,20 +21,20 @@ export class ActionsDialogComponent implements OnInit {
   }
 
   AddInput(): void {
-    this.data.input.push({key: '', value: ''});
+    this.data.action.input.push({key: '', value: ''});
   }
   AddValidation(): void {
-    this.data.validation.push({ key: '', value: '' });
+    this.data.action.validation.push({ key: '', value: '' });
   }
   removeValidationField(validationfield): void
   {
-    const index = this.data.validation.indexOf(validationfield);
-    this.data.validation.splice(index, 1);
+    const index = this.data.action.validation.indexOf(validationfield);
+    this.data.action.validation.splice(index, 1);
   }
   removeInputField(inputfield): void
   {
-    const index = this.data.input.indexOf(inputfield);
-    this.data.input.splice(index, 1);
+    const index = this.data.action.input.indexOf(inputfield);
+    this.data.action.input.splice(index, 1);
   }
 
 }

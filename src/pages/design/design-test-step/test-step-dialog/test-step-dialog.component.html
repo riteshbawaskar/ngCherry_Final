@@ -1,3 +1,90 @@
-<p>
-  test-step-dialog works!
-</p>
+<div class="dialog-content-wrapper" appDraggableDialog>
+  <mat-toolbar matDialogTitle class="mat-accent m-0">
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">Test Steps</span>
+      <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div mat-dialog-content class="p-24 pb-0 m-0" FlexPerfectScrollbar>
+    <div fxLayout="row" fxLayoutAlign="end center">
+      Active <mat-slide-toggle></mat-slide-toggle>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+      <mat-form-field appearance="outline" fxFlex>
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="data.name" />
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" class="textarea-wrapper" fxLayoutAlign="start start">
+
+      <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+        <mat-label>Tags</mat-label>
+        <mat-chip-list #tagList name="tags" formControlName="tags">
+          <mat-chip *ngFor="let tag of data.tags" [removable]="true" (removed)="remove(tag)">
+            {{tag}}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+          <input [matChipInputFor]="tagList" [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="add($event)" />
+        </mat-chip-list>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+      <mat-form-field appearance="outline" fxFlex>
+        <mat-select [formControl]="frmCtrl" placeholder="Action" #singleSelect [(ngModel)]="data.action"
+          (selectionChange)="OnSelectionChange($event)">
+          <mat-select-search [formControl]="frmFilterCtrl"></mat-select-search>
+          <mat-option *ngFor="let action of filteredActions | async" [value]="action">
+            {{ action.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div style="background: aliceblue" fxLayout="row" fxLayoutAlign="start start" *ngFor="let input of data.input">
+      <button mat-icon-button (click)="removeInputField(input)">
+        <mat-icon style="font-size: 20px; height: 20px; width: 20px">
+          <mat-icon>remove_circle_outline</mat-icon>
+        </mat-icon>
+      </button>
+      <mat-form-field style="width: 30%">
+        <input matInput placeholder="@input" [(ngModel)]="input.key" />
+      </mat-form-field>
+      <mat-form-field style="width: 50%">
+        <textarea matInput placeholder="@value" [(ngModel)]="input.value" matTextareaAutosize matAutosizeMinRows="1"
+          matAutosizeMaxRows="5">
+        </textarea>
+      </mat-form-field>
+    </div>
+
+    <div style="background: whitesmoke" fxLayout="row" fxLayoutAlign="start start"
+      *ngFor="let input of data.validation">
+      <button mat-icon-button (click)="removeValidationField(input)">
+        <mat-icon style="font-size: 20px; height: 20px; width: 20px">
+          <mat-icon>remove_circle_outline</mat-icon>
+        </mat-icon>
+      </button>
+      <mat-form-field style="width: 30%">
+        <input matInput placeholder="@validate" [(ngModel)]="input.key" />
+      </mat-form-field>
+      <mat-form-field style="width: 50%">
+        <textarea matInput placeholder="@value" [(ngModel)]="input.value" matTextareaAutosize matAutosizeMinRows="1"
+          matAutosizeMaxRows="3">
+        </textarea>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
+    <button mat-button (click)="AddInput()">Add Input Field</button>
+    <button mat-button (click)="AddValidation()">Add Validation</button>
+
+    <button mat-button class="save-button" (click)="matDialogRef.close(data)" aria-label="SAVE">
+      SAVE
+    </button>
+  </div>
+</div>

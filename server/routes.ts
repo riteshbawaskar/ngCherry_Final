@@ -89,11 +89,12 @@ function setRoutes(app): void {
 
   // Actions
   router.route('/actions').get(actionsCtrl.getAll);
+  router.route('/actions/:id').get(actionsCtrl.getActions);
   router.route('/actions/count').get(actionsCtrl.count);
-  router.route('/actions').post(actionsCtrl.insert);
-  router.route('/actions/:id').get(actionsCtrl.get);
-  router.route('/actions/:id').put(actionsCtrl.update);
-  router.route('/actions/:id').delete(actionsCtrl.delete);
+  router.route('/action').post(actionsCtrl.insert);
+  router.route('/action/:id').get(actionsCtrl.get);
+  router.route('/action/:id').put(actionsCtrl.update);
+  router.route('/action/:id').delete(actionsCtrl.delete);
 
   // Environments
   router.route('/environments').get(envCtrl.getAll);

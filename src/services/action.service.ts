@@ -11,7 +11,11 @@ export class ActionsService {
 constructor(private httpClient: HttpClient) { }
 
 
-getActions(): Observable<Actions[]> {
+getActions(componentid): Observable<Actions[]> {
+  return this.httpClient.get<Actions[]>(`/api/actions/${componentid}`);
+}
+
+getAllActions(): Observable<Actions[]> {
   return this.httpClient.get<Actions[]>('/api/actions');
 }
 
@@ -20,19 +24,19 @@ countActions(): Observable<number> {
 }
 
 addAction(actions: Actions): Observable<Actions> {
-  return this.httpClient.post<Actions>('/api/actions', actions);
+  return this.httpClient.post<Actions>('/api/action', actions);
 }
 
 getAction(actions: Actions): Observable<Actions> {
-  return this.httpClient.get<Actions>(`/api/actions/${actions._id}`);
+  return this.httpClient.get<Actions>(`/api/action/${actions._id}`);
 }
 
 editActions(actions: Actions): Observable<any> {
-  return this.httpClient.put(`/api/actions/${actions._id}`, actions, { responseType: 'text' });
+  return this.httpClient.put(`/api/action/${actions._id}`, actions, { responseType: 'text' });
 }
 
 deleteActions(actions: Actions): Observable<any> {
-  return this.httpClient.delete(`/api/actions/${actions._id}`, { responseType: 'text' });
+  return this.httpClient.delete(`/api/action/${actions._id}`, { responseType: 'text' });
 }
 
 }

@@ -1,3 +1,5 @@
+import { ComponentLib } from './../../../models/component-lib';
+import { ComponentLibService } from './../../../services/component-lib.service';
 import { FormGroup } from '@angular/forms';
 import { EnvironmentDialogComponent } from './environment-dialog/environment-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -6,6 +8,7 @@ import { EnvironmentService } from './../../../services/environment.service';
 import { Environment } from './../../../models/environment';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-environment',
@@ -18,8 +21,16 @@ export class EnvironmentComponent implements OnInit {
 
   environment: Environment;
   environments: Environment[];
+  componentlib: ComponentLib;
   dialogRef: any;
-  constructor(private _matDialog: MatDialog, private environmentservice: EnvironmentService, public matSnackBar: MatSnackBar) { }
+  constructor(private _matDialog: MatDialog, private environmentservice: EnvironmentService, private route: ActivatedRoute,
+              public matSnackBar: MatSnackBar, private libservice: ComponentLibService) {
+                this.componentlib = new ComponentLib();
+                this.componentlib._id =  this.route.snapshot.paramMap.get('id');
+                libservice.getLib(this.componentlib).subscribe(resp => { this.componentlib = resp;
+                  });
+
+               }
 
 
   ngOnInit(): void {

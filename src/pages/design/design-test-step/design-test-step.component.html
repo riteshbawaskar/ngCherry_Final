@@ -31,7 +31,7 @@
           <div class="step" *ngFor="let step of teststeps" cdkDrag>
 
             <!--   -->
-            <div class="step-name" [ngStyle]="{'text-decoration': step.active?'none':'line-through'}">Step {{step.id}}.
+            <div class="step-name" [ngStyle]="{'text-decoration': step.active?'none':'line-through'}">Step {{step.seqid}}.
               {{step.name}}
               <p> <small class="tags" *ngFor="let tag of step.tags">
                   <span class="tag">
@@ -41,8 +41,8 @@
               </p>
             </div>
             <div style="align-content: flex-end;">
-              <mat-icon matTooltip='Edit Step' mat-list-icon >edit</mat-icon>
-              <mat-icon matTooltip='Delete Step' mat-list-icon>delete_outline</mat-icon>
+              <mat-icon matTooltip='Edit Step' mat-list-icon (click) ="EditTestStep(step)" >edit</mat-icon>
+              <mat-icon matTooltip='Delete Step' mat-list-icon (click)="DeleteStep(step)">delete_outline</mat-icon>
               <mat-icon matTooltip='Copy Step' mat-list-icon>file_copy</mat-icon>
             </div>
 
