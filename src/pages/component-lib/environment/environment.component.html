@@ -1,63 +1,61 @@
 <div id="product" class="page-layout carded fullwidth inner-scroll">
 
-  <!-- TOP BACKGROUND -->
-  <div class="top-bg accent"></div>
-  <!-- / TOP BACKGROUND -->
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
 
-  <!-- CENTER -->
-  <div class="center">
+    <!-- CENTER -->
+    <div class="center">
 
-      <!-- HEADER -->
-      <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
 
-          <!-- APP TITLE -->
-          <div fxLayout="row" fxLayoutAlign="start center">
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
 
-              <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/components'">
-                  <mat-icon>arrow_back</mat-icon>
-              </button>
+                <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/components'">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
 
 
-              <div fxLayout="column" fxLayoutAlign="start start"
-                   [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
-                 <div class="h2" >
-                      Environment
-                  </div>
-                  <div class="subtitle secondary-text">
-                      <span>{{componentlib.name}}</span>
-                  </div>
-              </div>
-          </div>
-          <!-- / APP TITLE -->
+                <div fxLayout="column" fxLayoutAlign="start start"
+                    [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2">
+                        Environment
+                    </div>
+                    <div class="subtitle secondary-text">
+                        <span>{{componentlib.name}}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
 
-          <button mat-raised-button
-                  class="save-envirionment-button"
-                  (click)="addEnvironment()">
-              <span>ADD</span>
-          </button>
+            <button mat-raised-button class="save-envirionment-button" (click)="addEnvironment()">
+                <span>ADD</span>
+            </button>
 
         </div>
-      <!-- / HEADER -->
+        <!-- / HEADER -->
 
-      <!-- CONTENT CARD -->
-      <div class="content-card">
+        <!-- CONTENT CARD -->
+        <div class="content-card">
 
-          <!-- CONTENT -->
-          <div class="content">
+            <!-- CONTENT -->
+            <div class="content">
                 <mat-tab-group>
                     <mat-tab *ngFor="let env of environments; let index = index" [label]="env.name">
                         <ng-template matTabContent>
-                           <app-environment-config [environment]='env'> </app-environment-config>
-                          </ng-template>
+                            <app-environment-config [environment]='env' [componentlib]='componentlib'> </app-environment-config>
+                        </ng-template>
                     </mat-tab>
-                  </mat-tab-group>
-          </div>
-          <!-- / CONTENT -->
+                </mat-tab-group>
+            </div>
+            <!-- / CONTENT -->
 
-      </div>
-      <!-- / CONTENT CARD -->
+        </div>
+        <!-- / CONTENT CARD -->
 
-  </div>
-  <!-- / CENTER -->
+    </div>
+    <!-- / CENTER -->
 
 </div>

@@ -1,3 +1,14 @@
+<div fxLayout="column" style="width:100%" fxflex fxLayoutAlign="start start" >
+
+  <div fxLayout="row" fxLayoutAlign="start end">
+    <button mat-raised-button class="button" (click)="AddRow()">
+      <span>ADD</span>
+    </button>
+    <button mat-raised-button class="button" (click)="SaveConfig()">
+      <span>SAVE</span>
+    </button>
+  </div>
+
 <mat-table #table [dataSource]="dataSource">
 
   <!-- Position Column -->
@@ -27,10 +38,12 @@
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-		<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
-  
-  <button mat-fab class="accent" id="add-user-button" (click)="SaveConfig()" aria-label="add user"
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+</div>
+
+<!-- <button mat-fab class="accent" id="add-user-button" (click)="SaveConfig()" aria-label="add user"
         [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}">
     <mat-icon>save</mat-icon>
-</button>
+</button> -->
