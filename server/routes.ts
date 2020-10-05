@@ -12,6 +12,7 @@ import EnvironmentCtrl from './controllers/environment';
 import EnvironmentConfigCtrl from './controllers/environment-config';
 import StateCtrl from './controllers/state';
 import AgentCtrl from './controllers/agent';
+import ResultsCtrl from './controllers/results';
 
 function setRoutes(app): void {
   const router = express.Router();
@@ -28,6 +29,7 @@ function setRoutes(app): void {
   const envConfigCtrl = new EnvironmentConfigCtrl();
   const stateCtrl = new StateCtrl();
   const agentCtrl = new AgentCtrl();
+  const resultsCtrl = new ResultsCtrl();
 
   // Users
   router.route('/login').post(userCtrl.login);
@@ -38,7 +40,6 @@ function setRoutes(app): void {
   router.route('/user/:id').put(userCtrl.update);
   router.route('/user/:id').delete(userCtrl.delete);
 
-
    // ComponentLib
   router.route('/componentlibs').get(componentlibCtrl.getAll);
   router.route('/componentlibs/count').get(componentlibCtrl.count);
@@ -46,7 +47,6 @@ function setRoutes(app): void {
   router.route('/componentlib/:id').get(componentlibCtrl.get);
   router.route('/componentlib/:id').put(componentlibCtrl.update);
   router.route('/componentlib/:id').delete(componentlibCtrl.delete);
-
 
    // Project
   router.route('/projects').get(projectCtrl.getAll);
@@ -77,7 +77,7 @@ function setRoutes(app): void {
     // TestSteps
   router.route('/steps/').get(stepCtrl.getAll);
   router.route('/steps/:id').get(stepCtrl.getTestSteps);
-  router.route('/step/count').get(stepCtrl.count);
+  router.route('/steps/count').get(stepCtrl.count);
   router.route('/step').post(stepCtrl.insert);
   router.route('/step/:id').get(stepCtrl.get);
   router.route('/step/:id').put(stepCtrl.update);
@@ -85,11 +85,19 @@ function setRoutes(app): void {
 
   // Executions
   router.route('/executions').get(executionCtrl.getAll);
-  router.route('/execution/count').get(executionCtrl.count);
+  router.route('/executions/count').get(executionCtrl.count);
   router.route('/execution').post(executionCtrl.insert);
   router.route('/execution/:id').get(executionCtrl.get);
   router.route('/execution/:id').put(executionCtrl.update);
   router.route('/execution/:id').delete(executionCtrl.delete);
+
+  // Results
+  router.route('/results').get(resultsCtrl.getAll);
+  router.route('/results/count').get(resultsCtrl.count);
+  router.route('/results').post(resultsCtrl.insert);
+  router.route('/results/:id').get(resultsCtrl.get);
+  router.route('/results/:id').put(resultsCtrl.update);
+  router.route('/results/:id').delete(resultsCtrl.delete);
 
   // Actions
   router.route('/actions').get(actionsCtrl.getAll);
@@ -108,7 +116,6 @@ function setRoutes(app): void {
   router.route('/environment/:id').put(envCtrl.update);
   router.route('/environment/:id').delete(envCtrl.delete);
 
-
   // Environment-Configs
   router.route('/environmentConfigs').get(envConfigCtrl.getAll);
   router.route('/environmentConfigs/count').get(envConfigCtrl.count);
@@ -116,7 +123,6 @@ function setRoutes(app): void {
   router.route('/environmentConfig/:id').get(envConfigCtrl.getEnvironmentConfig);
   router.route('/environmentConfig/:id').put(envConfigCtrl.update);
   router.route('/environmentConfig/:id').delete(envConfigCtrl.delete);
-
 
   // STATE
   router.route('/state').get(stateCtrl.getState);
@@ -126,8 +132,6 @@ function setRoutes(app): void {
   router.route('/state/:id').put(stateCtrl.update);
   router.route('/state/:id').delete(stateCtrl.delete);
 
-
-
   // Agent
   router.route('/agents').get(agentCtrl.getAll);
   router.route('/agents/count').get(agentCtrl.count);
@@ -135,7 +139,6 @@ function setRoutes(app): void {
   router.route('/agent/:id').get(agentCtrl.get);
   router.route('/agent/:id').put(agentCtrl.update);
   router.route('/agent/:id').delete(agentCtrl.delete);
-
 
   // Apply the routes to our application with the prefix /api
   app.use('/api', router);
