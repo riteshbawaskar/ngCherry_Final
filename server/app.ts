@@ -28,7 +28,7 @@ async function main(): Promise<any> {
       res.sendFile(path.join(__dirname, '../public/index.html'));
     });
     if (!module.parent) {
-      app.listen(app.get('port'), () => console.log(`Cherry Server listening on port ${app.get('port')}`));
+      app.listen(app.get('port'), () => console.log(`Server listening on port ${app.get('port')}`));
     }
   } catch (err) {
     console.error(err);

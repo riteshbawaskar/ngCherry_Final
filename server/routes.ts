@@ -135,7 +135,7 @@ function setRoutes(app): void {
   // Agent
   router.route('/agents').get(agentCtrl.getAll);
   router.route('/agents/count').get(agentCtrl.count);
-  router.route('/agent').post(agentCtrl.insert);
+  router.route('/agent').post(agentCtrl.AddOrUpdate);
   router.route('/agent/:id').get(agentCtrl.get);
   router.route('/agent/:id').put(agentCtrl.update);
   router.route('/agent/:id').delete(agentCtrl.delete);

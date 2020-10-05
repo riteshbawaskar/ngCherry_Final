@@ -21,7 +21,7 @@ import { takeUntil } from 'rxjs/internal/operators';
 export class ExecutionComponent implements OnInit {
 
   dataSource: FilesDataSource | null;
-  displayedColumns = ['id', 'name', 'date', 'runby', 'status'];
+  displayedColumns = ['id', 'name', 'date', 'total', 'pass', 'fail', 'runby', 'status'];
 
   @ViewChild(MatPaginator, {static: true})
   paginator: MatPaginator;

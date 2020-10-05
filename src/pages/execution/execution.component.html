@@ -79,6 +79,36 @@
                   </mat-cell>
               </ng-container>
 
+                 <!-- TOTAL Column -->
+                 <ng-container matColumnDef="total">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>TOTAL</mat-header-cell>
+                    <mat-cell *matCellDef="let execution">
+                        <p class="status text-truncate h6 p-4" [ngClass]="execution.total">
+                            {{execution.total}}
+                        </p>
+                    </mat-cell>
+                </ng-container>
+
+                   <!-- PASS Column -->
+              <ng-container matColumnDef="pass">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>PASS</mat-header-cell>
+                <mat-cell *matCellDef="let execution">
+                    <p class="status text-truncate h6 p-4" [ngClass]="execution.pass">
+                        {{execution.pass}}
+                    </p>
+                </mat-cell>
+            </ng-container>
+
+               <!-- FAIL Column -->
+               <ng-container matColumnDef="fail">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>FAIL</mat-header-cell>
+                <mat-cell *matCellDef="let execution">
+                    <p class="status text-truncate h6 p-4" [ngClass]="execution.fail">
+                        {{execution.fail}}
+                    </p>
+                </mat-cell>
+            </ng-container>
+
               <!-- Status Column -->
               <ng-container matColumnDef="status">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
