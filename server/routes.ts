@@ -119,7 +119,7 @@ function setRoutes(app): void {
 
 
   // STATE
-  router.route('/state').get(stateCtrl.getAll);
+  router.route('/state').get(stateCtrl.getState);
   router.route('/state/count').get(stateCtrl.count);
   router.route('/state').post(stateCtrl.insert);
   router.route('/state/:id').get(stateCtrl.get);
