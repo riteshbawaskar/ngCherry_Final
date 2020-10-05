@@ -5,7 +5,7 @@ export class Execution extends Entity {
     name: string;
     tag: string[];
     agent: string;
-    environment: string[];
+    environment: string;
     suiteid: string;
     projectid: string;
     schedule: string; //now, once , daily , weekly , monthly

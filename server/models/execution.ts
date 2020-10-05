@@ -6,7 +6,7 @@ const executionSchema = new mongoose.Schema({
     _id: String,
     runid: String,
     name: String,
-    description: [String],
+    tag: [String],
     agent: String,
     suiteid: String,
     projectid: String,
@@ -17,6 +17,9 @@ const executionSchema = new mongoose.Schema({
     continueprevexecution: Boolean,
     option: String, // All , Failed
     runby: String,
+    total: Number,
+    pass: Number,
+    fail: Number,
     status: String //scheduled, running, completed
 });
 

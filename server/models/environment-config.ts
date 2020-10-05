@@ -3,6 +3,7 @@ import * as mongoose from 'mongoose';
 
 const environmentConfigSchema = new mongoose.Schema({
   componentid: String,
+  projectid: String,
   environmentid: String,
   config: [{key: String, value: String}],
 });

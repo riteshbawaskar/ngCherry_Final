@@ -52,6 +52,7 @@ export class DesignTestCaseComponent implements OnInit {
     execution.suiteid = this.suite._id;
     execution.testcasefilter = [];
     execution.teststepfilter = [];
+    execution.tag = [];
     execution.name = this.suite.group + ' >> ' + this.suite.name;
 
     const dialogRef = this._matDialog.open(ExecutionDialogComponent, {

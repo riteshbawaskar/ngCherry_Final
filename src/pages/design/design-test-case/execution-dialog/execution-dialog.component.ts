@@ -1,3 +1,5 @@
+import { Environment } from 'models/environment';
+import { EnvironmentService } from './../../../../services/environment.service';
 import { TestSuiteDialogComponent } from './../../design-test-suite/test-suite-dialog/test-suite-dialog.component';
 import { Execution } from './../../../../models/execution';
 import { TestSuite } from './../../../../models/test-suite';
@@ -20,12 +22,14 @@ export class ExecutionDialogComponent implements OnInit {
   action: string;
   execution: Execution;
   testSuite: TestSuite;
+  envrionments: Environment[];
 
   constructor(
     public matDialogRef: MatDialogRef<ExecutionDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Execution ) {
-      
-      console.log("data:"+ data.suiteid);
+    @Inject(MAT_DIALOG_DATA) public data: Execution, public envservice: EnvironmentService ) {
+
+      envservice.getEnvironments().subscribe(resp => {this.envrionments = resp; });
+      console.log('data:' + data.suiteid);
     }
 
   addtestfilter(event: MatChipInputEvent): void {
