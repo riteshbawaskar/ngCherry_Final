@@ -9,7 +9,9 @@ import ExecutionCtrl from './controllers/execution';
 import TestStepCtrl from './controllers/teststeps';
 import ActionsCtrl from './controllers/actions';
 import EnvironmentCtrl from './controllers/environment';
-import EnvironmentConfigCtrl from './controllers/environment-config'
+import EnvironmentConfigCtrl from './controllers/environment-config';
+import StateCtrl from './controllers/state';
+import AgentCtrl from './controllers/agent';
 
 function setRoutes(app): void {
   const router = express.Router();
@@ -24,7 +26,9 @@ function setRoutes(app): void {
   const actionsCtrl = new ActionsCtrl();
   const envCtrl = new EnvironmentCtrl();
   const envConfigCtrl = new EnvironmentConfigCtrl();
- 
+  const stateCtrl = new StateCtrl();
+  const agentCtrl = new AgentCtrl();
+
   // Users
   router.route('/login').post(userCtrl.login);
   router.route('/users').get(userCtrl.getAll);
@@ -112,6 +116,26 @@ function setRoutes(app): void {
   router.route('/environmentConfig/:id').get(envConfigCtrl.getEnvironmentConfig);
   router.route('/environmentConfig/:id').put(envConfigCtrl.update);
   router.route('/environmentConfig/:id').delete(envConfigCtrl.delete);
+
+
+  // STATE
+  router.route('/state').get(stateCtrl.getAll);
+  router.route('/state/count').get(stateCtrl.count);
+  router.route('/state').post(stateCtrl.insert);
+  router.route('/state/:id').get(stateCtrl.get);
+  router.route('/state/:id').put(stateCtrl.update);
+  router.route('/state/:id').delete(stateCtrl.delete);
+
+
+
+  // Agent
+  router.route('/agents').get(agentCtrl.getAll);
+  router.route('/agents/count').get(agentCtrl.count);
+  router.route('/agent').post(agentCtrl.insert);
+  router.route('/agent/:id').get(agentCtrl.get);
+  router.route('/agent/:id').put(agentCtrl.update);
+  router.route('/agent/:id').delete(agentCtrl.delete);
+
 
   // Apply the routes to our application with the prefix /api
   app.use('/api', router);

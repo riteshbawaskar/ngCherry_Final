@@ -1,3 +1,4 @@
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { Environment } from 'models/environment';
 import { EnvironmentService } from './../../../../services/environment.service';
 import { TestSuiteDialogComponent } from './../../design-test-suite/test-suite-dialog/test-suite-dialog.component';
@@ -6,6 +7,7 @@ import { TestSuite } from './../../../../models/test-suite';
 import { Component, Inject, ViewEncapsulation, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
+
 import {
   MatDialogModule,
   MatDialogRef,
@@ -23,6 +25,7 @@ export class ExecutionDialogComponent implements OnInit {
   execution: Execution;
   testSuite: TestSuite;
   envrionments: Environment[];
+  date = Date;
 
   constructor(
     public matDialogRef: MatDialogRef<ExecutionDialogComponent>,

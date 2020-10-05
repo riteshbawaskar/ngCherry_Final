@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 import { DesignComponent } from './design.component';
 import { MatSelectSearchModule } from 'core/components/mat-select-search/mat-select-search.module';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 
 @NgModule({
   imports: [
@@ -22,7 +23,9 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     SharedModule,
     MaterialModule,
     MatSelectSearchModule,
-    DragDropModule
+    DragDropModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule
   ],
   declarations: [TestCaseDialogComponent,
     FilterPipe,
